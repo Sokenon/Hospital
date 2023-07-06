@@ -154,8 +154,9 @@ namespace Hospital
         static public Contact[] TakeAllContacts(int idHuman)
         {
             Base bs = Base.getInstance();
-            DataTable dt = bs.TakeValue("*", ("Contact WHERE ID_Human = " + idHuman.ToString());
-        }
+            DataTable dt = bs.TakeValue("*", "Contact WHERE ID_Human = " + idHuman.ToString());
+            Console.WriteLine("pupa");
 
+        }
     }
 }
