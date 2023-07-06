@@ -10,7 +10,6 @@ using System.Data.SqlClient;
 
 
 namespace Hospital
-
 {
     class Base
     {

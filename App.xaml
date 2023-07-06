@@ -1,7 +1,7 @@
-﻿<Application x:Class="Medical.App"
+﻿<Application x:Class="Med.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Medical"
+             xmlns:local="clr-namespace:Med"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

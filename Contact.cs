@@ -122,5 +122,40 @@ namespace Hospital
                 bs.Update("Contact", "Value", newValue, this.ID);
             }
         }
+        public string ContactString()
+        {
+            string result = (TypeOfContact(this.Type) + ": " + this.Value);
+            return result;
+        }
+        static string TypeOfContact(int type)
+        {
+            string result = "";
+            if (type == 1 || type == 2 || type == 3)
+            {
+                switch (type)
+                {
+                    case 1:
+                        result = "Телефон";
+                        break;
+                    case 2:
+                        result = "E-mail";
+                        break;
+                    case 3:
+                        result = "Внутренний номер";
+                        break;
+                }
+            }
+            else
+            {
+                //ОШИБКА
+            }
+            return result;
+        }
+        static public Contact[] TakeAllContacts(int idHuman)
+        {
+            Base bs = Base.getInstance();
+            DataTable dt = bs.TakeValue("*", ("Contact WHERE ID_Human = " + idHuman.ToString());
+        }
+
     }
 }
