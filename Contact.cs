@@ -170,7 +170,7 @@ namespace Hospital
         public void DeleteContact()
         {
             Base bs = Base.getInstance();
-            bs.Act("DELETE * WHERE ID = " + this.ID.ToString() + " FROM Contact;");
+            bs.Act("DELETE * FROM Contact WHERE ID = " + this.ID.ToString() + ";");
         }
     }
 }
