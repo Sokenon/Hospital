@@ -156,7 +156,6 @@ namespace Hospital
             Base bs = Base.getInstance();
             DataTable dt = bs.TakeValue("*", "Contact WHERE ID_Human = " + idHuman.ToString());
             Console.WriteLine("pupa");
-
         }
     }
 }
