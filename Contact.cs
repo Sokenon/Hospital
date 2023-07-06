@@ -31,7 +31,6 @@ namespace Hospital
             this.Value = value;
             this.Type = type;
             this.ID_Human = idHuman;
-            SaveToBase();
         }
         public Contact(int id)
         {
@@ -155,7 +154,23 @@ namespace Hospital
         {
             Base bs = Base.getInstance();
             DataTable dt = bs.TakeValue("*", "Contact WHERE ID_Human = " + idHuman.ToString());
-            Console.WriteLine("pupa");
+            Contact helper = null;
+            Contact[] result = new Contact[0];
+            foreach (DataRowCollection row in dt.Rows)
+            {
+                helper.ID = int.Parse(row[0].ToString());
+                helper.ID_Human = int.Parse(row[1].ToString());
+                helper.Value = row[2].ToString();
+                helper.Type = int.Parse(row[3].ToString());
+                Array.Resize(ref result, result.Length + 1);
+                result[result.Length - 1] = helper;
+            }
+            return result;
+        }
+        public void DeleteContact()
+        {
+            Base bs = Base.getInstance();
+            bs.Act("DELETE * WHERE ID = " + this.ID.ToString() + " FROM Contact;");
         }
     }
 }
