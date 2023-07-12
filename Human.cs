@@ -56,7 +56,7 @@ namespace Hospitl
         }
         public int[] ShowAllTypes()
         {
-            return this.Type;
+            return this.TypeOfContact; ;
         }
         virtual protected void TakeHuman(int id)
         {
@@ -133,8 +133,8 @@ namespace Hospitl
                 public string qualification { get { return Qualification; } }
                 private Reception[] Receptions;
                 public Reception[] receptions { get {return Receptions;} }
-                private Reception ActualReception;
-                public Reception actualReception { get { return ActualReception} }
+                private Reception ActualReception = null;
+                public Reception actualReception { get { return ActualReception; } }
 
                 public Doctor(string name, string family, string middleName, int age, int sex, string position, string qualification) : base(name, family, middleName, age, sex, position, 1)
                 {
@@ -187,8 +187,135 @@ namespace Hospitl
                         //ОШИБКА. ТИП КОНТАКТА НЕ СООТВЕТСТВУЕТ ДОЛЖНОСТИ
                     }
                 }
+                private void TakeReceptions()
+                {
+                    Base bs = Base.getInstance();
+                    DataTable dt = bs.TakeValue("*", $"Reception WHERE ID_Doctor = {this.ID.ToString()} AND Status = 0");
+                    Reception[] result = new Reception[0];
+                    Reception helper = null;
+                    foreach (DataRowCollection row in dt.Rows)
+                    {
+                        // ЗАПОЛНЯЕМ ПРИЁМ
+                        Array.Resize(ref result, result.Length + 1);
+                        result[result.Length - 1] = helper;
+                    }
+                    this.Receptions = result;
+                }
+                public Reception[] ShowReceptions()
+                {
+                    TakeReceptions();
+                    return this.Receptions;
+                }
+                public void StartReception(int idReception)
+                {
+                    if (this.ActualReception == null)
+                    {
+                        Base bs = Base.getInstance();
+                        DataTable dt = bs.TakeValue("*", $"Reception WHERE ID = {idReception.ToString()}");
 
+                        this.ActualReception = //ЗАПОЛНЯЕМ ИЗ ДТ
+                        this.ActualReception.ChangeStatus(1);
+                    }
+                    else
+                    {
+                        //ОШИБКА, ПРИЁМ УЖЕ ИДЁТ
+                    }
+                }
+                public void FinishReception(string recept)
+                {
+                    if (this.ActualReception == null)
+                    {
+                        //ОШИБКА НЕТ АКТУАЛЬНОГО ПРИЁМА
+                    }
+                    else
+                    {
+                        this.ActualReception.Finish(recept);
+                        this.ActualReception = null;
+                    }
+                }
+            }
+            class Nurse : Stuff
+            {
+                public Nurse(string name, string family, string middleName, int age, int sex, string position, int type) : base(name, family, middleName, age, sex, position, 2)
+                { }
+                public Nurse(int id) : base(id)
+                { }
+                public override void AddContact(string value, int type)
+                {
+                    bool valid = false;
+                    for (int i = 0; i < this.TypeOfContact.Length; i++)
+                    {
+                        if (type == this.TypeOfContact[i])
+                        {
+                            valid = true;
+                            break;
+                        }
+                    }
+                    if (valid)
+                    {
+                        Contact contact = new Contact(value, type, this.ID);
+                        contact.SaveToBase();
+                        Array.Resize(ref this.Contacts, this.Contacts.Length + 1);
+                        this.Contacts[this.Contacts.Length - 1] = contact;
+                    }
+                    else
+                    {
+                        //ОШИБКА. ТИП КОНТАКТА НЕ СООТВЕТСТВУЕТ ДОЛЖНОСТИ
+                    }
+
+                }
+                public void CreateReception(int idDoctor, DateTime date)
+                {
+                    Line.TakeLast().CreateReception(idDoctor, date);
+                }
             }
         }
+        class Patient : Human
+        {
+            public Patient(string name, string family, string middleName, int age, int sex) : base(name, family, middleName, age, sex)
+            { }
+            public Patient(int id) : base(id)
+            { }
+            public override void AddContact(string value, int type)
+            {
+                bool valid = false;
+                for (int i = 0; i < this.TypeOfContact.Length; i++)
+                {
+                    if (type == this.TypeOfContact[i])
+                    {
+                        valid = true;
+                        break;
+                    }
+                }
+                if (valid)
+                {
+                    Contact contact = new Contact(value, type, this.ID);
+                    contact.SaveToBase();
+                    Array.Resize(ref this.Contacts, this.Contacts.Length + 1);
+                    this.Contacts[this.Contacts.Length - 1] = contact;
+                }
+                else
+                {
+                    //ОШИБКА. ТИП КОНТАКТА НЕ СООТВЕТСТВУЕТ ДОЛЖНОСТИ
+                }
+            }
+            public void Receptions()
+            {
+
+            }
+            public void CancelReception(int idReception)
+            {
+
+            }
+            public void AddToLine(string anamnesis)
+            {
+                Line.AddLine(this.ID, anamnesis);
+            }
+            public void LeftLine()
+            {
+                Line.DeleteLine(this.ID);
+            }
+        }
+
     }
 }

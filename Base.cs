@@ -86,6 +86,17 @@ namespace Hospital
             myCommand.ExecuteNonQuery();
             this.connection.Close();
         }
+        public DataTable NewCommand(string command)
+        {
+            SqlDataAdapter adapter = new SqlDataAdapter(command, this.connectionStr);
+            DataSet ds = new DataSet();
+            this.connection.Open();
+            adapter.Fill(ds);
+            this.connection.Close();
+            DataTable dt = ds.Tables[0];
+            return dt;
+        }
+
 
     }
 }

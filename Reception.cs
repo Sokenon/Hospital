@@ -25,7 +25,7 @@ namespace Hospital
         }
         public void Finish(string recept)
         {
-
+            
         }
     }
 }
