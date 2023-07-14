@@ -34,7 +34,7 @@ namespace Hospital
             DataTable dt = bs.TakeValue("(Family + \", \" + Name + \", \" + MiddleName) AS FNM", $"Human WHERE ID = {idPatient.ToString()}");
             this.FNM = dt.Rows[0]["FNM"].ToString();
         }
-        static Line TakeLast()
+        static public Line TakeLast()
         {
             Base bs = Base.getInstance();
             DataTable dt = bs.TakeValue("*", "Line ORDER BY Date ASC LIMIT 1");
@@ -48,7 +48,7 @@ namespace Hospital
             int length = int.Parse(dt.Rows[0][0].ToString());
             return length;
         }
-        static void AddLine(int idPatient, string anamnesis)
+        static public void AddLine(int idPatient, string anamnesis)
         {
             Base bs = Base.getInstance();
             if (bool.Parse(bs.NewCommand($"NOT EXISTS (SELECT * FROM Line WHERE ID_Patient = {idPatient.ToString()});").Rows[0][0].ToString()))
@@ -60,7 +60,7 @@ namespace Hospital
                 //ОШИБКА, ПАЦИЕНТ УЖЕ В ОЧЕРЕДИ
             }
         }
-        static void DeleteLine(int idPatient)
+        static public void DeleteLine(int idPatient)
         {
             Base bs = Base.getInstance();
             bs.Act("DELETE * FROM Line WHERE ID_Patient = " + idPatient.ToString());

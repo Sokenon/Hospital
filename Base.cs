@@ -96,7 +96,5 @@ namespace Hospital
             DataTable dt = ds.Tables[0];
             return dt;
         }
-
-
     }
 }

@@ -132,7 +132,7 @@ namespace Hospitl
                 private string Qualification;
                 public string qualification { get { return Qualification; } }
                 private Reception[] Receptions;
-                public Reception[] receptions { get {return Receptions;} }
+                public Reception[] receptions { get { return Receptions; } }
                 private Reception ActualReception = null;
                 public Reception actualReception { get { return ActualReception; } }
 
@@ -189,17 +189,7 @@ namespace Hospitl
                 }
                 private void TakeReceptions()
                 {
-                    Base bs = Base.getInstance();
-                    DataTable dt = bs.TakeValue("*", $"Reception WHERE ID_Doctor = {this.ID.ToString()} AND Status = 0");
-                    Reception[] result = new Reception[0];
-                    Reception helper = null;
-                    foreach (DataRowCollection row in dt.Rows)
-                    {
-                        // ЗАПОЛНЯЕМ ПРИЁМ
-                        Array.Resize(ref result, result.Length + 1);
-                        result[result.Length - 1] = helper;
-                    }
-                    this.Receptions = result;
+                    this.Receptions = Reception.TakeDoctorReceptions(this.ID, 0);
                 }
                 public Reception[] ShowReceptions()
                 {
@@ -210,11 +200,14 @@ namespace Hospitl
                 {
                     if (this.ActualReception == null)
                     {
-                        Base bs = Base.getInstance();
-                        DataTable dt = bs.TakeValue("*", $"Reception WHERE ID = {idReception.ToString()}");
-
-                        this.ActualReception = //ЗАПОЛНЯЕМ ИЗ ДТ
-                        this.ActualReception.ChangeStatus(1);
+                        foreach (Reception rec in Receptions)
+                        {
+                            if (rec.id == idReception)
+                            {
+                                rec.Start();
+                                this.ActualReception = rec;
+                            }
+                        }
                     }
                     else
                     {
@@ -233,12 +226,70 @@ namespace Hospitl
                         this.ActualReception = null;
                     }
                 }
+                static Doctor[] TakeDoctors(string qualification)
+                {
+                    Base bs = Base.getInstance();
+                    DataTable dt = bs.TakeValue("*", "Human WHERE Qualification = " + qualification);
+                    Doctor helper = null;
+                    Doctor[] doctors = new Doctor[0];
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        helper.ID = int.Parse(row["ID"].ToString());
+                        helper.Family = row["Family"].ToString();
+                        helper.Name = row["Name"].ToString();
+                        helper.MiddleName = row["MiddleName"].ToString();
+                        helper.Sex = int.Parse(row["Sex"].ToString());
+                        helper.Age = int.Parse(row["Age"].ToString());
+                        helper.Contacts = Contact.TakeAllContacts(helper.ID);
+                        helper.Position = row["Position"].ToString();
+                        helper.Type = int.Parse(row["Type"].ToString());
+                        helper.Qualification = row["Qualification"].ToString();
+                        Array.Resize(ref doctors, doctors.Length + 1);
+                        doctors[doctors.Length - 1] = helper;
+                    }
+                    return doctors;
+                }
+                class Nurse : Stuff
+                {
+                    public Nurse(string name, string family, string middleName, int age, int sex, string position, int type) : base(name, family, middleName, age, sex, position, 2)
+                    { }
+                    public Nurse(int id) : base(id)
+                    { }
+                    public override void AddContact(string value, int type)
+                    {
+                        bool valid = false;
+                        for (int i = 0; i < this.TypeOfContact.Length; i++)
+                        {
+                            if (type == this.TypeOfContact[i])
+                            {
+                                valid = true;
+                                break;
+                            }
+                        }
+                        if (valid)
+                        {
+                            Contact contact = new Contact(value, type, this.ID);
+                            contact.SaveToBase();
+                            Array.Resize(ref this.Contacts, this.Contacts.Length + 1);
+                            this.Contacts[this.Contacts.Length - 1] = contact;
+                        }
+                        else
+                        {
+                            //ОШИБКА. ТИП КОНТАКТА НЕ СООТВЕТСТВУЕТ ДОЛЖНОСТИ
+                        }
+
+                    }
+                    public void CreateReception(int idDoctor, DateTime date)
+                    {
+                        Line.TakeLast().CreateReception(idDoctor, date);
+                    }
+                }
             }
-            class Nurse : Stuff
+            class Patient : Human
             {
-                public Nurse(string name, string family, string middleName, int age, int sex, string position, int type) : base(name, family, middleName, age, sex, position, 2)
+                public Patient(string name, string family, string middleName, int age, int sex) : base(name, family, middleName, age, sex)
                 { }
-                public Nurse(int id) : base(id)
+                public Patient(int id) : base(id)
                 { }
                 public override void AddContact(string value, int type)
                 {
@@ -262,60 +313,40 @@ namespace Hospitl
                     {
                         //ОШИБКА. ТИП КОНТАКТА НЕ СООТВЕТСТВУЕТ ДОЛЖНОСТИ
                     }
-
                 }
-                public void CreateReception(int idDoctor, DateTime date)
+                public Reception[] Receptions()
                 {
-                    Line.TakeLast().CreateReception(idDoctor, date);
+                    Reception[] receptions = Reception.TakePatientReceptions(this.ID, 0);
+                    return receptions;
                 }
-            }
-        }
-        class Patient : Human
-        {
-            public Patient(string name, string family, string middleName, int age, int sex) : base(name, family, middleName, age, sex)
-            { }
-            public Patient(int id) : base(id)
-            { }
-            public override void AddContact(string value, int type)
-            {
-                bool valid = false;
-                for (int i = 0; i < this.TypeOfContact.Length; i++)
+                public void CancelReception(int idReception)
                 {
-                    if (type == this.TypeOfContact[i])
+                    Reception reception = new Reception(idReception);
+                    if (reception.status == 0)
                     {
-                        valid = true;
-                        break;
+                        reception.Finish("");
+                    }
+                    else
+                    {
+                        //ОШИБКА, ПРИЁМ НЕВОЗМОЖНО ОТМЕНИТЬ
                     }
                 }
-                if (valid)
+                public void AddToLine(string anamnesis)
                 {
-                    Contact contact = new Contact(value, type, this.ID);
-                    contact.SaveToBase();
-                    Array.Resize(ref this.Contacts, this.Contacts.Length + 1);
-                    this.Contacts[this.Contacts.Length - 1] = contact;
+                    Line.AddLine(this.ID, anamnesis);
                 }
-                else
+                public void LeftLine()
                 {
-                    //ОШИБКА. ТИП КОНТАКТА НЕ СООТВЕТСТВУЕТ ДОЛЖНОСТИ
+                    Line.DeleteLine(this.ID);
                 }
-            }
-            public void Receptions()
-            {
+                public Reception[] AllReceptions()
+                {
+                    Reception[] receptions = Reception.TakePatientReceptions(this.ID);
+                    return receptions;
+                }
 
             }
-            public void CancelReception(int idReception)
-            {
 
-            }
-            public void AddToLine(string anamnesis)
-            {
-                Line.AddLine(this.ID, anamnesis);
-            }
-            public void LeftLine()
-            {
-                Line.DeleteLine(this.ID);
-            }
         }
-
     }
 }
