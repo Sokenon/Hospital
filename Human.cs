@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using Hospital;
 
-namespace Hospitl
+namespace Hospital
 {
     abstract class Human
     {
@@ -285,68 +285,69 @@ namespace Hospitl
                     }
                 }
             }
-            class Patient : Human
-            {
-                public Patient(string name, string family, string middleName, int age, int sex) : base(name, family, middleName, age, sex)
-                { }
-                public Patient(int id) : base(id)
-                { }
-                public override void AddContact(string value, int type)
-                {
-                    bool valid = false;
-                    for (int i = 0; i < this.TypeOfContact.Length; i++)
-                    {
-                        if (type == this.TypeOfContact[i])
-                        {
-                            valid = true;
-                            break;
-                        }
-                    }
-                    if (valid)
-                    {
-                        Contact contact = new Contact(value, type, this.ID);
-                        contact.SaveToBase();
-                        Array.Resize(ref this.Contacts, this.Contacts.Length + 1);
-                        this.Contacts[this.Contacts.Length - 1] = contact;
-                    }
-                    else
-                    {
-                        //ОШИБКА. ТИП КОНТАКТА НЕ СООТВЕТСТВУЕТ ДОЛЖНОСТИ
-                    }
-                }
-                public Reception[] Receptions()
-                {
-                    Reception[] receptions = Reception.TakePatientReceptions(this.ID, 0);
-                    return receptions;
-                }
-                public void CancelReception(int idReception)
-                {
-                    Reception reception = new Reception(idReception);
-                    if (reception.status == 0)
-                    {
-                        reception.Finish("");
-                    }
-                    else
-                    {
-                        //ОШИБКА, ПРИЁМ НЕВОЗМОЖНО ОТМЕНИТЬ
-                    }
-                }
-                public void AddToLine(string anamnesis)
-                {
-                    Line.AddLine(this.ID, anamnesis);
-                }
-                public void LeftLine()
-                {
-                    Line.DeleteLine(this.ID);
-                }
-                public Reception[] AllReceptions()
-                {
-                    Reception[] receptions = Reception.TakePatientReceptions(this.ID);
-                    return receptions;
-                }
 
+        }
+        class Patient : Human
+        {
+            public Patient(string name, string family, string middleName, int age, int sex) : base(name, family, middleName, age, sex)
+            { }
+            public Patient(int id) : base(id)
+            { }
+            public override void AddContact(string value, int type)
+            {
+                bool valid = false;
+                for (int i = 0; i < this.TypeOfContact.Length; i++)
+                {
+                    if (type == this.TypeOfContact[i])
+                    {
+                        valid = true;
+                        break;
+                    }
+                }
+                if (valid)
+                {
+                    Contact contact = new Contact(value, type, this.ID);
+                    contact.SaveToBase();
+                    Array.Resize(ref this.Contacts, this.Contacts.Length + 1);
+                    this.Contacts[this.Contacts.Length - 1] = contact;
+                }
+                else
+                {
+                    //ОШИБКА. ТИП КОНТАКТА НЕ СООТВЕТСТВУЕТ ДОЛЖНОСТИ
+                }
+            }
+            public Reception[] Receptions()
+            {
+                Reception[] receptions = Reception.TakePatientReceptions(this.ID, 0);
+                return receptions;
+            }
+            public void CancelReception(int idReception)
+            {
+                Reception reception = new Reception(idReception);
+                if (reception.status == 0)
+                {
+                    reception.Finish("");
+                }
+                else
+                {
+                    //ОШИБКА, ПРИЁМ НЕВОЗМОЖНО ОТМЕНИТЬ
+                }
+            }
+            public void AddToLine(string anamnesis)
+            {
+                Line.AddLine(this.ID, anamnesis);
+            }
+            public void LeftLine()
+            {
+                Line.DeleteLine(this.ID);
+            }
+            public Reception[] AllReceptions()
+            {
+                Reception[] receptions = Reception.TakePatientReceptions(this.ID);
+                return receptions;
             }
 
         }
+
     }
 }

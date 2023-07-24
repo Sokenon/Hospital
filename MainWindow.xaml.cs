@@ -36,5 +36,20 @@ namespace Med
             bs.Act("CREATE TABLE IF NOT EXISTS Line (ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT, ID_Patient INT NOT NULL, Date DATETIME NOT NULL, Anamnesis VARCHAR (50), FOREIGN KEY (ID_Patient) REFERENCES Human(ID));");
 
         }
+
+        private void ButtonDoctor(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonPatient(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonAdmin(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

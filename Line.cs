@@ -67,7 +67,7 @@ namespace Hospital
         }
         public void CreateReception(int idDoctor, DateTime date)
         {
-
+            Reception.Create(idDoctor, this.ID_Patient, this.Anamnesis, date);
         }
     }
 }

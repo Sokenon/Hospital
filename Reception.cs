@@ -59,17 +59,170 @@ namespace Hospital
                 }
             }
         }
-        public void Show()
+        public Reception(string anamnesis, string recept, int status, DateTime startDate, DateTime finishDate, int idDoctor, int idPatient)
         {
+            this.Anamnesis = anamnesis;
+            this.Recept = recept;
+            this.Status = status;
+            this.Start_Date = startDate;
+            this.Finish_Date = finishDate;
+            this.ID_Doctor = idDoctor;
+            this.ID_Patient = idPatient;
+            Base bs = Base.getInstance();
+            DataTable dt = bs.TakeValue("ID, (Family + \", \" + Name + \", \" + MiddleName) AS FNM", $"Human WHERE ID = {this.ID_Doctor.ToString()}, {this.ID_Patient.ToString()}");
+            foreach (DataRow row in dt.Rows)
+            {
+                if (int.Parse(row["ID"].ToString()) == this.ID_Doctor)
+                {
+                    this.FNM_Doctor = row["FNM"].ToString();
+                }
+                else if (int.Parse(row["ID"].ToString()) == this.ID_Patient)
+                {
+                    this.FNM_Patient = row["FNM"].ToString();
+                }
+            }
 
         }
-        public void ChangeStatus(int newStatus)
+        private void ChangeStatus(int newStatus)
         {
-
+            if (ValidStatus(newStatus))
+            {
+                Base bs = Base.getInstance();
+                bs.Update("Reception", "Status", newStatus.ToString(), this.ID);
+                this.Status = newStatus;
+            }
+            else
+            {
+                //ОШИБКА, НЕТ ТАКОГО СТАТУСА
+            }
         }
         public void Finish(string recept)
         {
-            
+            Base bs = Base.getInstance();
+            bs.Act($"UPDATE Reception SET Status = 2, Recept = {recept}, Finish_Date = {DateTime.Now.ToString()} WHERE ID = {this.ID.ToString()}; ");
+            this.Status = 2;
+            this.Recept = recept;
         }
+        static public void Create(int idDoctor, int idPatient, string anamnesis, DateTime startDate)
+        {
+            Base bs = Base.getInstance();
+            bs.AddRow("Reception", $"{idDoctor.ToString()}, {idPatient.ToString()}, {startDate.ToString()}, NULL, NULL, {anamnesis}, 0");
+        }
+        static public Reception[] TakeDoctorReceptions(int idDoctor, int status = -1)
+        {
+            Reception[] receptions = new Reception[0];
+            Base bs = Base.getInstance();
+            DataTable dt = null;
+            if (status == -1)
+            {
+                dt = bs.TakeValue("*", "Reception WHERE ID_Doctor = " + idDoctor.ToString());
+            }
+            if (ValidStatus(status))
+            {
+                dt = bs.TakeValue("*", "Reception WHERE ID_Doctor = " + idDoctor.ToString() + "AND Status = " + status.ToString());
+            }
+            string patients = idDoctor.ToString();
+            foreach (DataRow row in dt.Rows)
+            {
+                patients = patients + ", " + row["ID"].ToString();
+            }
+            DataTable humans = dt = bs.TakeValue("ID, (Family + \", \" + Name + \", \" + MiddleName) AS FNM", $"Human WHERE ID = {patients}");
+            Reception helper = null;
+            foreach (DataRow row in dt.Rows)
+            {
+                helper.ID = int.Parse(row["ID"].ToString());
+                helper.ID_Doctor = idDoctor;
+                helper.ID_Patient = int.Parse(row["ID_Patient"].ToString());
+                helper.Anamnesis = row["Anamnesis"].ToString();
+                helper.Recept = row["Recept"].ToString();
+                helper.Status = int.Parse(row["Status"].ToString());
+                helper.Start_Date = DateTime.Parse(row["Date"].ToString());
+                helper.Finish_Date = DateTime.Parse(row["Finish_Date"].ToString());
+                foreach (DataRow r in humans.Rows)
+                {
+                    if (int.Parse(r["ID"].ToString()) == helper.ID_Doctor)
+                    {
+                        helper.FNM_Doctor = r["FNM"].ToString();
+                    }
+                    else if (int.Parse(r["ID"].ToString()) == helper.ID_Patient)
+                    {
+                        helper.FNM_Patient = r["FNM"].ToString();
+                    }
+                }
+                Array.Resize(ref receptions, receptions.Length + 1);
+                receptions[receptions.Length - 1] = helper;
+            }
+            return receptions;
+
+        }
+        static bool ValidStatus(int status)
+        {
+            bool check = false;
+            switch (status)
+            {
+                case 0:
+                    check = true;
+                    break;
+                case 1:
+                    check = true;
+                    break;
+                case 2:
+                    check = true;
+                    break;
+            }
+            return check;
+        }
+        static public Reception[] TakePatientReceptions(int idPatient, int status = -1)
+        {
+            Reception[] receptions = new Reception[0];
+            Base bs = Base.getInstance();
+            DataTable dt = null;
+            if (status == -1)
+            {
+                dt = bs.TakeValue("*", "Reception WHERE ID_Patient = " + idPatient.ToString());
+            }
+            if (ValidStatus(status))
+            {
+                dt = bs.TakeValue("*", "Reception WHERE ID_Patient = " + idPatient.ToString() + "AND Status = " + status.ToString());
+            }
+            string doctors = idPatient.ToString();
+            foreach (DataRow row in dt.Rows)
+            {
+                doctors = doctors + ", " + row["ID"].ToString();
+            }
+            DataTable humans = dt = bs.TakeValue("ID, (Family + \", \" + Name + \", \" + MiddleName) AS FNM", $"Human WHERE ID = {doctors}");
+            Reception helper = null;
+            foreach (DataRow row in dt.Rows)
+            {
+                helper.ID = int.Parse(row["ID"].ToString());
+                helper.ID_Doctor = int.Parse(row["ID_Doctor"].ToString());
+                helper.ID_Patient = idPatient;
+                helper.Anamnesis = row["Anamnesis"].ToString();
+                helper.Recept = row["Recept"].ToString();
+                helper.Status = int.Parse(row["Status"].ToString());
+                helper.Start_Date = DateTime.Parse(row["Date"].ToString());
+                helper.Finish_Date = DateTime.Parse(row["Finish_Date"].ToString());
+                foreach (DataRow r in humans.Rows)
+                {
+                    if (int.Parse(r["ID"].ToString()) == helper.ID_Doctor)
+                    {
+                        helper.FNM_Doctor = r["FNM"].ToString();
+                    }
+                    else if (int.Parse(r["ID"].ToString()) == helper.ID_Patient)
+                    {
+                        helper.FNM_Patient = r["FNM"].ToString();
+                    }
+                }
+                Array.Resize(ref receptions, receptions.Length + 1);
+                receptions[receptions.Length - 1] = helper;
+            }
+            return receptions;
+
+        }
+        public void Start()
+        {
+            ChangeStatus(1);
+        }
+
     }
 }
