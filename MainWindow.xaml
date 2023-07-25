@@ -1,13 +1,14 @@
-﻿<Window x:Class="Med.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Med"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Med.MainWindow"
         mc:Ignorable="d"
         Title="Медицинская организация" Height="450" Width="800" HorizontalAlignment="Center" VerticalAlignment="Center">
-    <Grid Background="#FF4FC7FF" RenderTransformOrigin="0.506,0.484" Margin="0,-17,0,0">
-        <TextBlock Margin="275,40,266,307" TextWrapping="Wrap" Text="Авторизация" FontSize="36" VerticalAlignment="Center" Height="72" RenderTransformOrigin="0.5,0.5" TextAlignment="Center" Foreground="White">
+    <Grid Background="#FF4FC7FF" RenderTransformOrigin="0.506,0.484" Margin="0,-17,0,-45">
+        <TextBlock Margin="293,46,0,0" TextWrapping="Wrap" Text="Авторизация" FontSize="36" Height="72" RenderTransformOrigin="0.5,0.5" TextAlignment="Center" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -17,14 +18,35 @@
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <TextBox HorizontalAlignment="Left" Height="38" Margin="161,132,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="477" x:Name="Name" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" />
-        <TextBlock HorizontalAlignment="Left" Margin="161,111,0,0" TextWrapping="Wrap" Text="Имя" VerticalAlignment="Top" Foreground="White"/>
-        <TextBox HorizontalAlignment="Left" Height="38" Margin="161,196,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="477" x:Name="Family" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" />
-        <TextBlock HorizontalAlignment="Left" Margin="161,175,0,0" TextWrapping="Wrap" Text="Фамилия" VerticalAlignment="Top" Foreground="White"/>
-        <TextBox HorizontalAlignment="Left" Height="38" Margin="161,260,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="477" x:Name="MiddleName" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" />
-        <TextBlock HorizontalAlignment="Left" Margin="161,239,0,0" TextWrapping="Wrap" Text="Отчество" VerticalAlignment="Top" Foreground="White"/>
-        <Button Content="Войти" HorizontalAlignment="Left" Margin="325,318,0,0" VerticalAlignment="Top" Width="150" Height="49" Background="White" FontSize="20" Click="Enter"/>
-        <ComboBox HorizontalAlignment="Left" Margin="130,61,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox Height="38" Margin="155,132,0,0" TextWrapping="Wrap" Text="" x:Name="Name" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="477" ToolTip="ВВедите имя" />
+        <TextBlock Margin="155,111,0,0" TextWrapping="Wrap" Text="Имя" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox Height="38" Margin="155,196,0,0" TextWrapping="Wrap" Text="" Width="477" x:Name="Family" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBlock Margin="155,175,0,0" TextWrapping="Wrap" Text="Фамилия" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox Height="38" Margin="155,260,0,0" TextWrapping="Wrap" Text="" Width="477" x:Name="MiddleName" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBlock Margin="155,239,0,0" TextWrapping="Wrap" Text="Отчество" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="Войти" Margin="310,388,0,0" Width="150" Height="51" Background="White" FontSize="20" Click="Enter" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <ComboBox x:Name="User" Margin="155,329,0,0" Width="477" Height="38" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+            <System:String>Пациент</System:String>
+            <System:String>Доктор</System:String>
+            <System:String>Медсестра</System:String>
+        </ComboBox>
+        <TextBlock Margin="155,308,0,0" TextWrapping="Wrap" Text="Выберете из списка" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock x:Name="Error" Margin="230,90,0,0" TextWrapping="Wrap" Text="Пользователь не найден" FontSize="24" Height="72" RenderTransformOrigin="0.5,0.5" TextAlignment="Center" Foreground="#FFFF5353" HorizontalAlignment="Left" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Hidden" Width="340" FontWeight="Bold" Visibility="Hidden">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.55"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-0.658"/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
 
     </Grid>
 </Window>

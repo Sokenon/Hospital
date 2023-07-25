@@ -39,16 +39,30 @@ namespace Hospital
             myCommand.ExecuteNonQuery();
             this.connection.Close();
         }
-        public DataTable TakeValue(string what, string whereAndParm)
+        public DataTable TakeValue(string what, string whereAndParm, Dictionary<string, string> parametrs = null)
         {
             string command = "SELECT " + what + " FROM " + whereAndParm;
-            SqlDataAdapter adapter = new SqlDataAdapter(command, this.connectionStr);
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command, this.connection);
+            if (parametrs != null)
+            {
+                foreach (var item in parametrs)
+                {
+                    adapter.SelectCommand.Parameters.AddWithValue(item.Key, item.Value);
+                }
+            }
             DataSet ds = new DataSet();
             this.connection.Open();
             adapter.Fill(ds);
             this.connection.Close();
-            DataTable dt = ds.Tables[0];
-            return dt;
+            if (ds == null)
+            {
+                return null;
+            }
+            else
+            {
+                DataTable dt = ds.Tables[0];
+                return dt;
+            }
         }
         public int AddRow(string table, string value)
         {
