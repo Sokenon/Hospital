@@ -84,7 +84,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Line.cs" />
+    <Compile Include="LK_Patient.xaml.cs">
+      <DependentUpon>LK_Patient.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Reception.cs" />
+    <Page Include="LK_Patient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -13,7 +13,7 @@ using Hospital;
 
 namespace Hospital
 {
-    class Line
+    public class Line
     {
         private int ID;
         private int ID_Patient;

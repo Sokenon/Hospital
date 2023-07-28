@@ -11,11 +11,13 @@ using System.Text.RegularExpressions;
 
 namespace Hospital
 {
-    class Contact
+    public class Contact
     {
         private int ID;
         private string Value;
+        public string value { get { return Value; } }
         private int Type;
+        public int type { get { return Type; } }
         private int ID_Human;
 
         public Contact(string value, int type, int idHuman)

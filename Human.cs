@@ -12,15 +12,20 @@ using Hospital;
 
 namespace Hospital
 {
-    abstract class Human
+    public abstract class Human
     {
         protected int ID;
+        public int id { get { return ID; } }
         protected string Name;
+        public string name { get { return Name; } }
         protected string Family;
+        public string family { get { return Family; } }
         protected string MiddleName;
+        public string middleName { get { return MiddleName; } }
         protected int Age;
         protected int Sex;
         protected Contact[] Contacts;
+        public Contact[] contacts { get { return Contacts; } }
         protected int[] TypeOfContact = new int[2] { 1, 2 };
 
         public Human(string name, string family, string middleName, int age, int sex)
@@ -61,7 +66,7 @@ namespace Hospital
         virtual protected void TakeHuman(int id)
         {
             Base bs = Base.getInstance();
-            DataTable dt = bs.TakeValue("*", "Human WHERE ID = " + id.ToString());
+            DataTable dt = bs.TakeValue("*", ("Human WHERE ID = " + id.ToString()));
             this.ID = id;
             this.Family = dt.Rows[0]["Family"].ToString();
             this.Name = dt.Rows[0]["Name"].ToString();
@@ -73,7 +78,7 @@ namespace Hospital
 
 
     }
-    class Patient : Human
+    public class Patient : Human
     {
         public Patient(string name, string family, string middleName, int age, int sex) : base(name, family, middleName, age, sex)
         { }
@@ -133,7 +138,7 @@ namespace Hospital
             return receptions;
         }
     }
-    abstract class Stuff : Human
+    public abstract class Stuff : Human
     {
         protected string Position;
         protected int Type;
@@ -155,6 +160,7 @@ namespace Hospital
         {
             Array.Resize(ref this.TypeOfContact, this.TypeOfContact.Length + 1);
             this.TypeOfContact[this.TypeOfContact.Length - 1] = 3;
+            this.Type = 2;
         }
         private bool ValideType(int type)
         {
@@ -191,7 +197,7 @@ namespace Hospital
         }
 
     }
-    class Nurse : Stuff
+    public class Nurse : Stuff
     {
         public Nurse(string name, string family, string middleName, int age, int sex, string position, int type) : base(name, family, middleName, age, sex, position, 2)
         { }
@@ -226,7 +232,7 @@ namespace Hospital
             Line.TakeLast().CreateReception(idDoctor, date);
         }
     }
-    class Doctor : Stuff
+    public class Doctor : Stuff
     {
         private string Qualification;
         public string qualification { get { return Qualification; } }

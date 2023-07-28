@@ -13,7 +13,7 @@ using Hospital;
 
 namespace Hospital
 {
-    class Reception
+    public class Reception
     {
         private int ID;
         public int id { get { return ID; } }
@@ -179,18 +179,18 @@ namespace Hospital
             DataTable dt = null;
             if (status == -1)
             {
-                dt = bs.TakeValue("*", "Reception WHERE ID_Patient = " + idPatient.ToString());
+                dt = bs.TakeValue("*", "Reception WHERE ID_Patient = " + idPatient.ToString() + ";");
             }
             if (ValidStatus(status))
             {
-                dt = bs.TakeValue("*", "Reception WHERE ID_Patient = " + idPatient.ToString() + "AND Status = " + status.ToString());
+                dt = bs.TakeValue("*", "Reception WHERE ID_Patient = " + idPatient.ToString() + " AND Status = " + status.ToString() + ";");
             }
             string doctors = idPatient.ToString();
             foreach (DataRow row in dt.Rows)
             {
                 doctors = doctors + ", " + row["ID"].ToString();
             }
-            DataTable humans = dt = bs.TakeValue("ID, (Family + \", \" + Name + \", \" + MiddleName) AS FNM", $"Human WHERE ID = {doctors}");
+            DataTable humans = bs.TakeValue("ID, (Family + \", \" + Name + \", \" + MiddleName) AS FNM", $"Human WHERE ID = {doctors}");
             Reception helper = null;
             foreach (DataRow row in dt.Rows)
             {

@@ -42,117 +42,94 @@ namespace Med
             {
                 Name.ToolTip = "Ведите имя";
                 Name.Background = Brushes.Coral;
-                if (Family.Text.Trim().ToLower() == "")
-                {
-                    Family.ToolTip = "Ведите фамилию";
-                    Family.Background = Brushes.Coral;
-                    if (MiddleName.Text.Trim().ToLower() == "")
-                    {
-                        MiddleName.ToolTip = "Ведите отчество";
-                        MiddleName.Background = Brushes.Coral;
-                        if (User.SelectedItem == null)
-                        {
-                            User.ToolTip = "Выберете тип";
-                            User.Background = Brushes.Coral;
-                        }
-                    }
-                    else if (User.SelectedItem == null)
-                    {
-                        User.ToolTip = "Выберете тип";
-                        User.Background = Brushes.Coral;
-                    }
-                }
-                else if (MiddleName.Text.Trim().ToLower() == "")
-                {
-                    MiddleName.ToolTip = "Ведите отчество";
-                    MiddleName.Background = Brushes.Coral;
-                    if (User.SelectedItem == null)
-                    {
-                        User.ToolTip = "Выберете тип";
-                        User.Background = Brushes.Coral;
-                    }
-                }
-                else if (User.SelectedItem == null)
-                {
-                    User.ToolTip = "Выберете тип";
-                    User.Background = Brushes.Coral;
-                }
-            }
-            else if (Family.Text.Trim().ToLower() == "")
-            {
-                Family.ToolTip = "Ведите фамилию";
-                Family.Background = Brushes.Coral;
-                if (MiddleName.Text.Trim().ToLower() == "")
-                {
-                    MiddleName.ToolTip = "Ведите отчество";
-                    MiddleName.Background = Brushes.Coral;
-                    if (User.SelectedItem == null)
-                    {
-                        User.ToolTip = "Выберете тип";
-                        User.Background = Brushes.Coral;
-                    }
-                }
-                else if (User.SelectedItem == null)
-                {
-                    User.ToolTip = "Выберете тип";
-                    User.Background = Brushes.Coral;
-                }
-
-
-            }
-            else if (MiddleName.Text.Trim().ToLower() == "")
-            {
-                MiddleName.ToolTip = "Ведите отчество";
-                if (User.SelectedItem == null)
-                {
-                    User.ToolTip = "Выберете тип";
-                    User.Background = Brushes.Coral;
-                }
-            }
-            else if (User.SelectedItem == null)
-            {
-                User.ToolTip = "Выберете тип";
-                User.Background = Brushes.Coral;
             }
             else
             {
                 Name.ToolTip = "";
                 Name.Background = Brushes.White;
+            }
+            if (Family.Text.Trim().ToLower() == "")
+            {
+                Family.ToolTip = "Ведите фамилию";
+                Family.Background = Brushes.Coral;
+            }
+            else
+            {
                 Family.ToolTip = "";
                 Family.Background = Brushes.White;
+            }
+            if (MiddleName.Text.Trim().ToLower() == "")
+            {
+                MiddleName.ToolTip = "Ведите отчество";
+                MiddleName.Background = Brushes.Coral;
+            }
+            else
+            {
                 MiddleName.ToolTip = "";
                 MiddleName.Background = Brushes.White;
+            }
+            if (User.Text.Trim().ToLower() == "")
+            {
+                User.ToolTip = "Выберете тип пользователя";
+                User.Background = Brushes.Coral;
+            }
+            else
+            {
                 User.ToolTip = "";
                 User.Background = Brushes.White;
             }
 
-            Human user;
             Base bs = Base.getInstance();
             Dictionary<string, string> parametrs = new Dictionary<string, string>();
             parametrs.Add("@Name", Name.Text.Trim().ToLower());
             parametrs.Add("@Family", Family.Text.Trim().ToLower());
             parametrs.Add("@MiddleName", MiddleName.Text.Trim().ToLower());
-            DataTable dt = bs.TakeValue("ID", $"Human WHERE Name = @Name AND Family = @Family AND MiddleName = @MiddleName;", parametrs);
+            DataTable dt = bs.TakeValue("ID, Type", $"Human WHERE Name = @Name AND Family = @Family AND MiddleName = @MiddleName;", parametrs);
+
             if (dt.Rows.Count > 0)
             {
-                Error.Visibility = Visibility.Hidden;
                 switch (User.SelectedItem)
                 {
                     case "Пациент":
-                        user = new Patient(int.Parse(dt.Rows[0][0].ToString()));
+                        if (dt.Rows[0]["Type"] == DBNull.Value)
+                        {
+                            Patient user = new Patient(int.Parse(dt.Rows[0][0].ToString()));
+                            LK_Patint lkPatient = new LK_Patint(user);
+                            lkPatient.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пользователь не найден!");
+                        }
                         break;
                     case "Доктор":
-                        user = new Doctor(int.Parse(dt.Rows[0][0].ToString()));
+                        if (int.Parse(dt.Rows[0][1].ToString()) == 1)
+                        {
+                            Doctor user = new Doctor(int.Parse(dt.Rows[0][0].ToString()));
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пользователь не найден!");
+                        }
                         break;
-                    case "Медсестра":           
-                        user = new Nurse(int.Parse(dt.Rows[0][0].ToString()));
+                    case "Медсестра":
+                        if (int.Parse(dt.Rows[0][1].ToString()) == 2)
+                        {
+                            Nurse user = new Nurse(int.Parse(dt.Rows[0][0].ToString()));
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пользователь не найден!");
+                        }
                         break;
                 }
             }
             else
             {
-                Error.Visibility = Visibility.Visible;
+                MessageBox.Show("Пользователь не найден!");
             }
+            
         }
     }
 }
