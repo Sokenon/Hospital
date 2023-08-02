@@ -22,11 +22,11 @@
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <TextBox Height="38" Margin="155,132,0,0" TextWrapping="Wrap" Text="Сергей" x:Name="Name" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="477" ToolTip="ВВедите имя" />
+        <TextBox Height="38" Margin="155,132,0,0" TextWrapping="Wrap" Text="Анна" x:Name="Name" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="477" ToolTip="ВВедите имя" />
         <TextBlock Margin="155,111,0,0" TextWrapping="Wrap" Text="Имя" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox Height="38" Margin="155,196,0,0" TextWrapping="Wrap" Text="Сергеев" Width="477" x:Name="Family" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBox Height="38" Margin="155,196,0,0" TextWrapping="Wrap" Text="Аннович" Width="477" x:Name="Family" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" />
         <TextBlock Margin="155,175,0,0" TextWrapping="Wrap" Text="Фамилия" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox Height="38" Margin="155,260,0,0" TextWrapping="Wrap" Text="Сергеевич" Width="477" x:Name="MiddleName" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBox Height="38" Margin="155,260,0,0" TextWrapping="Wrap" Text="Анновна" Width="477" x:Name="MiddleName" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" />
         <TextBlock Margin="155,239,0,0" TextWrapping="Wrap" Text="Отчество" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Button Content="Войти" Margin="310,388,0,0" Width="150" Height="51" Background="White" FontSize="20" Click="Enter" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <ComboBox x:Name="User" Margin="155,329,0,0" Width="477" Height="38" HorizontalAlignment="Left" VerticalAlignment="Top">

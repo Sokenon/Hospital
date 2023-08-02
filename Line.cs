@@ -51,19 +51,20 @@ namespace Hospital
         static public void AddLine(int idPatient, string anamnesis)
         {
             Base bs = Base.getInstance();
-            if (bool.Parse(bs.NewCommand($"NOT EXISTS (SELECT * FROM Line WHERE ID_Patient = {idPatient.ToString()});").Rows[0][0].ToString()))
+            DataTable dt = bs.NewCommand($"SELECT * FROM Line WHERE ID_Patient = {idPatient.ToString()};");
+            if (dt.Rows.Count == 0)
             {
-                bs.AddRow("Line", $"{idPatient.ToString()}, {DateTime.Now.ToString()}, {anamnesis}");
+                bs.AddRow("Line", $"{idPatient.ToString()}, \"{DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")}\", \"{anamnesis}\"");
             }
             else
             {
-                //ОШИБКА, ПАЦИЕНТ УЖЕ В ОЧЕРЕДИ
+                throw new Exception("Пациент уже стоит в очереди");
             }
         }
         static public void DeleteLine(int idPatient)
         {
             Base bs = Base.getInstance();
-            bs.Act("DELETE * FROM Line WHERE ID_Patient = " + idPatient.ToString());
+            bs.Act("DELETE FROM Line WHERE ID_Patient = " + idPatient.ToString());
         }
         public void CreateReception(int idDoctor, DateTime date)
         {

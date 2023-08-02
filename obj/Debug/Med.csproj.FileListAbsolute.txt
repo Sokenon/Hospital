@@ -30,3 +30,17 @@ C:\Users\user\source\repos\Med\obj\Debug\Med.exe
 C:\Users\user\source\repos\Med\obj\Debug\Med.pdb
 C:\Users\user\source\repos\Med\obj\Debug\LK_Patient.g.cs
 C:\Users\user\source\repos\Med\obj\Debug\LK_Patient.baml
+C:\Users\user\source\repos\Med\obj\Debug\Add_Line_Patient.g.cs
+C:\Users\user\source\repos\Med\obj\Debug\Add_Line_Patient.baml
+C:\Users\user\source\repos\Med\obj\Debug\LK_Nurse.g.cs
+C:\Users\user\source\repos\Med\obj\Debug\New_User.g.cs
+C:\Users\user\source\repos\Med\obj\Debug\Nurse_Cabinet.g.cs
+C:\Users\user\source\repos\Med\obj\Debug\Page_Doctor.g.cs
+C:\Users\user\source\repos\Med\obj\Debug\Page_Patient.g.cs
+C:\Users\user\source\repos\Med\obj\Debug\LK_Nurse.baml
+C:\Users\user\source\repos\Med\obj\Debug\New_User.baml
+C:\Users\user\source\repos\Med\obj\Debug\Nurse_Cabinet.baml
+C:\Users\user\source\repos\Med\obj\Debug\Page_Doctor.baml
+C:\Users\user\source\repos\Med\obj\Debug\Page_Patient.baml
+C:\Users\user\source\repos\Med\obj\Debug\Search_Human.g.cs
+C:\Users\user\source\repos\Med\obj\Debug\Search_Human.baml

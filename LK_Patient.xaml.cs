@@ -83,11 +83,22 @@ namespace Med
         }
         private void Add_Line(object sender, RoutedEventArgs e)
         {
-
+            Add_Line_Patient addLine = new Add_Line_Patient(this.User);
+            addLine.Show();
+            this.Hide();
         }
         private void Left_Line(object sender, RoutedEventArgs e)
         {
-
+            MessageBoxResult result = MessageBox.Show("Покинуть очередь?", "Подтвердите действие", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                this.User.LeftLine();
+                this.UpdateLayout();
+                Line.Text = "Вы не стоите в очереди на приём";
+                bAddLine.Visibility = Visibility.Visible;
+                InfoLine.Visibility = Visibility.Hidden;
+                bLeftLine.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

@@ -83,11 +83,11 @@ namespace Hospital
                     break;
             }
 
-            string CommandText = $"INSERT INTO {table} ({columns}) VALUES ({value});";
+            string CommandText = $"INSERT INTO {table} ({columns}) VALUES ({value}) RETURNING ID;";
             MySqlCommand myCommand = new MySqlCommand(CommandText, this.connection);
             DataSet ds = new DataSet();
             this.connection.Open();
-            int id = (Int32)myCommand.ExecuteScalar();
+            int id = (Int32) myCommand.ExecuteScalar();
             this.connection.Close();
             return id;
 
@@ -102,7 +102,7 @@ namespace Hospital
         }
         public DataTable NewCommand(string command)
         {
-            SqlDataAdapter adapter = new SqlDataAdapter(command, this.connectionStr);
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command, this.connectionStr);
             DataSet ds = new DataSet();
             this.connection.Open();
             adapter.Fill(ds);

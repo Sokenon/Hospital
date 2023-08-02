@@ -1,0 +1,30 @@
+﻿<Window x:Class="Med.Search_Human"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Med"
+        mc:Ignorable="d"
+        Title="Search_Human" Height="450" Width="800">
+    <Grid Background="#FF4FC7FF">
+        <TextBlock Margin="156,46,0,0" TextWrapping="Wrap" Text="Найти пользователя" FontSize="36" Height="72" RenderTransformOrigin="0.5,0.5" TextAlignment="Center" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Hidden" Width="478">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.55"/>
+                    <RotateTransform Angle="0.705"/>
+                    <TranslateTransform Y="-0.658"/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBox Height="38" Margin="155,132,0,0" TextWrapping="Wrap" Text="" x:Name="Name" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="477" ToolTip="ВВедите имя" />
+        <TextBlock Margin="155,111,0,0" TextWrapping="Wrap" Text="Имя" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox Height="38" Margin="155,196,0,0" TextWrapping="Wrap" Text="" Width="477" x:Name="Family" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBlock Margin="155,175,0,0" TextWrapping="Wrap" Text="Фамилия" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox Height="38" Margin="155,260,0,0" TextWrapping="Wrap" Text="" Width="477" x:Name="MiddleName" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBlock Margin="155,239,0,0" TextWrapping="Wrap" Text="Отчество" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button x:Name="bFind" Click="Find" Content="Найти" HorizontalAlignment="Left" Margin="470,318,0,0" VerticalAlignment="Top" Width="162" Height="39" Background="White" FontSize="16"/>
+        <Button x:Name="bCancel" Click="Cancel" Content="Отмена" HorizontalAlignment="Left" Margin="155,318,0,0" VerticalAlignment="Top" Width="162" Height="39" Background="White" FontSize="16"/>
+
+    </Grid>
+</Window>

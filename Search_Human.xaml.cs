@@ -10,33 +10,40 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
 using MySqlConnector;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 using Hospital;
 
 
 namespace Med
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для Search_Human.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Search_Human : Window
     {
-        public MainWindow()
+        Nurse User;
+        Nurse_Cabinet Cabinet;
+        int TypeOfHuman;
+        public Search_Human(Nurse user, Nurse_Cabinet cabinet, int type)
         {
             InitializeComponent();
-            Base bs = Base.getInstance();
-            bs.Act("CREATE TABLE IF NOT EXISTS Human (ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT, Family VARCHAR(30) NOT NULL, Name VARCHAR(30) NOT NULL, MiddleName VARCHAR(30) NOT NULL, Sex TINYINT NOT NULL, Age INT NOT NULL, Position VARCHAR(20), Qualification VARCHAR (20), Type INT, UNIQUE INDEX `fio`(`Family`, `Name`, `MiddleName`) USING HASH);");
-            bs.Act("CREATE TABLE IF NOT EXISTS Contact (ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT, ID_Human INT NOT NULL, Value VARCHAR(30) NOT NULL UNIQUE, Type INT NOT NULL, FOREIGN KEY (ID_Human) REFERENCES Human(ID));");
-            bs.Act("CREATE TABLE IF NOT EXISTS Reception (ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT, ID_Doctor INT NOT NULL, ID_Patient INT NOT NULL, Date DATETIME NOT NULL, Finish_Date DATETIME, Recept VARCHAR(50), Anamnesis VARCHAR(50), Status INT NOT NULL, FOREIGN KEY (ID_Doctor) REFERENCES Human(ID), FOREIGN KEY (ID_Patient) REFERENCES Human(ID));");
-            bs.Act("CREATE TABLE IF NOT EXISTS Line (ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT, ID_Patient INT NOT NULL, Date DATETIME NOT NULL, Anamnesis VARCHAR (50), FOREIGN KEY (ID_Patient) REFERENCES Human(ID));");
+            this.User = user;
+            this.Cabinet = cabinet;
+            this.TypeOfHuman = type;
         }
 
-        private void Enter(object sender, RoutedEventArgs e)
+        private void Cancel(object sender, RoutedEventArgs e)
+        {
+            this.Cabinet.Show();
+            this.Hide();
+        }
+
+        private void Find(object sender, RoutedEventArgs e)
         {
             if (Name.Text.Trim().ToLower() == "")
             {
@@ -68,16 +75,6 @@ namespace Med
                 MiddleName.ToolTip = "";
                 MiddleName.Background = Brushes.White;
             }
-            if (User.Text.Trim().ToLower() == "")
-            {
-                User.ToolTip = "Выберете тип пользователя";
-                User.Background = Brushes.Coral;
-            }
-            else
-            {
-                User.ToolTip = "";
-                User.Background = Brushes.White;
-            }
 
             Base bs = Base.getInstance();
             Dictionary<string, string> parametrs = new Dictionary<string, string>();
@@ -88,14 +85,14 @@ namespace Med
 
             if (dt.Rows.Count > 0)
             {
-                switch (User.SelectedItem)
+                switch (this.TypeOfHuman)
                 {
-                    case "Пациент":
+                    case 0:
                         if (dt.Rows[0]["Type"] == DBNull.Value)
                         {
                             Patient user = new Patient(int.Parse(dt.Rows[0][0].ToString()));
-                            LK_Patint lkPatient = new LK_Patint(user);
-                            lkPatient.Show();
+                            Page_Patient pagePatient = new Page_Patient(this.User, this.Cabinet, user);
+                            pagePatient.Show();
                             this.Hide();
                         }
                         else
@@ -103,22 +100,12 @@ namespace Med
                             MessageBox.Show("Пользователь не найден!");
                         }
                         break;
-                    case "Доктор":
+                    case 1:
                         if (int.Parse(dt.Rows[0][1].ToString()) == 1)
                         {
                             Doctor user = new Doctor(int.Parse(dt.Rows[0][0].ToString()));
-                        }
-                        else
-                        {
-                            MessageBox.Show("Пользователь не найден!");
-                        }
-                        break;
-                    case "Медсестра":
-                        if (int.Parse(dt.Rows[0][1].ToString()) == 2)
-                        {
-                            Nurse user = new Nurse(int.Parse(dt.Rows[0][0].ToString()));
-                            Nurse_Cabinet nurseCabinet = new Nurse_Cabinet(user);
-                            nurseCabinet.Show();
+                            Page_Doctor pageDoctor = new Page_Doctor(this.User, this.Cabinet, user);
+                            pageDoctor.Show();
                             this.Hide();
                         }
                         else
@@ -132,7 +119,7 @@ namespace Med
             {
                 MessageBox.Show("Пользователь не найден!");
             }
-            
+
         }
     }
 }
