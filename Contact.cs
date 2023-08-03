@@ -14,6 +14,7 @@ namespace Hospital
     public class Contact
     {
         private int ID;
+        public int id { get { return ID; } }
         private string Value;
         public string value { get { return Value; } }
         private int Type;
@@ -156,16 +157,13 @@ namespace Hospital
         {
             Base bs = Base.getInstance();
             DataTable dt = bs.TakeValue("*", "Contact WHERE ID_Human = " + idHuman.ToString());
-            Contact helper = null;
             Contact[] result = new Contact[0];
-            foreach (DataRowCollection row in dt.Rows)
+
+            foreach (DataRow row in dt.Rows)
             {
-                helper.ID = int.Parse(row[0].ToString());
-                helper.ID_Human = int.Parse(row[1].ToString());
-                helper.Value = row[2].ToString();
-                helper.Type = int.Parse(row[3].ToString());
                 Array.Resize(ref result, result.Length + 1);
-                result[result.Length - 1] = helper;
+                result[result.Length - 1] = new Contact(row["Value"].ToString(), int.Parse(row["Type"].ToString()), int.Parse(row["ID_Human"].ToString()));
+                result[result.Length - 1].ID = int.Parse(row["ID"].ToString());
             }
             return result;
         }

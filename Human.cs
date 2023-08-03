@@ -24,7 +24,7 @@ namespace Hospital
         public string middleName { get { return MiddleName; } }
         protected int Age;
         protected int Sex;
-        protected Contact[] Contacts;
+        protected Contact[] Contacts = new Contact[0];
         public Contact[] contacts { get { return Contacts; } }
         protected int[] TypeOfContact = new int[2] { 1, 2 };
 
@@ -48,7 +48,13 @@ namespace Hospital
         }
         public void UpdateContact(int ID, string newValue)
         {
-            this.Contacts[ID].UpdateContact(newValue);
+            foreach (Contact con in this.Contacts)
+            {
+                if (con.id == ID)
+                {
+                    con.UpdateContact(newValue);
+                }
+            }
         }
         public void DeliteContact(int id)
         {

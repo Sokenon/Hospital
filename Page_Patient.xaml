@@ -11,24 +11,30 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="29*"/>
                 <RowDefinition Height="32*"/>
-                <RowDefinition Height="26*"/>
-                <RowDefinition Height="194*"/>
-                <RowDefinition Height="67*"/>
+                <RowDefinition Height="33*"/>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="34*"/>
+                <RowDefinition Height="185*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="89*"/>
-                <ColumnDefinition Width="191*"/>
+                <ColumnDefinition Width="12*"/>
+                <ColumnDefinition Width="23*"/>
             </Grid.ColumnDefinitions>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="Фамилия:" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Grid.ColumnSpan="2"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="Имя:" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" Grid.Row="1" BorderBrush="{x:Null}" Grid.ColumnSpan="2"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="Отчество:" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" Grid.Row="2" BorderBrush="{x:Null}" Grid.ColumnSpan="2"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="Телефон:" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" Grid.Row="3" BorderBrush="{x:Null}" Grid.ColumnSpan="2"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="E-mail:" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" Grid.Row="4" BorderBrush="{x:Null}" Grid.ColumnSpan="2"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Grid.Column="1" FontWeight="Bold"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" Grid.Row="1" BorderBrush="{x:Null}" Grid.Column="1" FontWeight="Bold"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" Grid.Row="2" BorderBrush="{x:Null}" Grid.Column="1" FontWeight="Bold"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" Grid.Row="3" BorderBrush="{x:Null}" Grid.Column="1" FontWeight="Bold"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" Grid.Row="4" BorderBrush="{x:Null}" Grid.Column="1" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Фамилия:" VerticalAlignment="Top" FontSize="18" Foreground="White" Width="86" Height="24"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="E-mail:" VerticalAlignment="Top" FontSize="18" Foreground="White" Grid.Row="4" Width="86" Height="24"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,1,0,0" TextWrapping="Wrap" Text="Телефон:" VerticalAlignment="Top" FontSize="18" Foreground="White" Grid.Row="3" Width="86" Height="24"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Отчество:" VerticalAlignment="Top" FontSize="18" Foreground="White" Grid.Row="2" Width="86" Height="24"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Имя" VerticalAlignment="Top" FontSize="18" Foreground="White" Margin="10,28,0,0" Grid.RowSpan="2" Width="86" Height="24"/>
+            <TextBlock x:Name="Family" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold" Height="21" Width="169"/>
+            <TextBlock x:Name="Name" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold" Grid.Row="1" Height="21" Width="169"/>
+            <TextBlock x:Name="MiddleName" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold" Grid.Row="2" Height="21" Width="169"/>
+            <TextBlock x:Name="Telephone" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="---" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold" Grid.Row="3" Margin="5,0,0,0" Height="21" Width="169"/>
+            <TextBlock x:Name="Mail" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="---" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold" Grid.Row="4" Margin="5,0,0,0" Height="21" Width="169"/>
+            <Button x:Name="bChange" Click="Change" Content="Изменить контакты" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="129" Background="#FFFFFEFE" Grid.ColumnSpan="2"/>
+            <Button x:Name="bSave" Click="Save" Content="Сохранить" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="75" Background="#FFFFFEFE" Grid.Column="1" Visibility="Hidden"/>
+            <Button x:Name="bCancel_Change" Click="Cancel_Change" Content="Отмена" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="75" Background="#FFFFFEFE" Visibility="Hidden"/>
+            <TextBox x:Name="boxTelephone" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,1,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" FontSize="16" Grid.Row="3" Visibility="Hidden"/>
+            <TextBox x:Name="boxMail" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" FontSize="16" Grid.Row="4" Visibility="Hidden"/>
         </Grid>
 
     </Grid>
