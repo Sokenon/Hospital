@@ -28,11 +28,13 @@ namespace Med
     {
         Nurse User;
         Nurse_Cabinet Cabinet;
-        public Page_Doctor(Nurse user, Nurse_Cabinet cabinet)
+        Doctor Doctor;
+        public Page_Doctor(Nurse user, Nurse_Cabinet cabinet, Doctor doctor)
         {
             InitializeComponent();
             this.User = user;
             this.Cabinet = cabinet;
+            this.Doctor = doctor;
         }
     }
 }

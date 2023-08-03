@@ -7,6 +7,29 @@
         mc:Ignorable="d"
         Title="Page_Patient" Height="450" Width="800">
     <Grid Background="#FF4FC7FF">
-        
+        <Grid HorizontalAlignment="Left" Margin="21,22,0,49" Width="280">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="29*"/>
+                <RowDefinition Height="32*"/>
+                <RowDefinition Height="26*"/>
+                <RowDefinition Height="194*"/>
+                <RowDefinition Height="67*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="89*"/>
+                <ColumnDefinition Width="191*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="Фамилия:" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Grid.ColumnSpan="2"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="Имя:" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" Grid.Row="1" BorderBrush="{x:Null}" Grid.ColumnSpan="2"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="Отчество:" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" Grid.Row="2" BorderBrush="{x:Null}" Grid.ColumnSpan="2"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="Телефон:" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" Grid.Row="3" BorderBrush="{x:Null}" Grid.ColumnSpan="2"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="E-mail:" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" Grid.Row="4" BorderBrush="{x:Null}" Grid.ColumnSpan="2"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Grid.Column="1" FontWeight="Bold"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" Grid.Row="1" BorderBrush="{x:Null}" Grid.Column="1" FontWeight="Bold"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" Grid.Row="2" BorderBrush="{x:Null}" Grid.Column="1" FontWeight="Bold"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" Grid.Row="3" BorderBrush="{x:Null}" Grid.Column="1" FontWeight="Bold"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="18" Grid.Row="4" BorderBrush="{x:Null}" Grid.Column="1" FontWeight="Bold"/>
+        </Grid>
+
     </Grid>
 </Window>
