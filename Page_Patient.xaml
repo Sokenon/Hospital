@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Page_Patient" Height="450" Width="800">
     <Grid Background="#FF4FC7FF">
-        <Grid HorizontalAlignment="Left" Margin="21,22,0,49" Width="280">
+        <Grid HorizontalAlignment="Left" Margin="21,22,0,50" Width="280">
             <Grid.RowDefinitions>
                 <RowDefinition Height="29*"/>
                 <RowDefinition Height="32*"/>
@@ -35,7 +35,13 @@
             <Button x:Name="bCancel_Change" Click="Cancel_Change" Content="Отмена" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="75" Background="#FFFFFEFE" Visibility="Hidden"/>
             <TextBox x:Name="boxTelephone" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,1,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" FontSize="16" Grid.Row="3" Visibility="Hidden"/>
             <TextBox x:Name="boxMail" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" FontSize="16" Grid.Row="4" Visibility="Hidden"/>
+            <TextBlock x:Name="Line" HorizontalAlignment="Left" Margin="10,35,0,0" TextWrapping="Wrap" Text="Очередь:" VerticalAlignment="Top" FontSize="18" Foreground="White" Grid.Row="5" Width="260" Height="24" Grid.ColumnSpan="2"/>
         </Grid>
-
+        <TextBlock x:Name="InfoLine" HorizontalAlignment="Left" Margin="33,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FF000047" FontSize="14" Width="255" Height="89" Background="White"><Run Text=""/><Run Text=""/></TextBlock>
+        <Button x:Name="bLeftLine" HorizontalAlignment="Left" Margin="33,354,0,0" VerticalAlignment="Top" Width="139" Background="White" Content="Покинуть очередь" Visibility="Visible" Click="Left_Line"/>
+        <Button x:Name="bAddLine" HorizontalAlignment="Left" Margin="33,254,0,0" VerticalAlignment="Top" Width="114" Background="White" Content="Встать в очередь" Visibility="Hidden" Click="Add_Line"/>
+        <TextBlock x:Name="Receptions" HorizontalAlignment="Left" Margin="414,51,0,0" TextWrapping="Wrap" Text="Назначенные приёмы:" VerticalAlignment="Top" Foreground="White" FontSize="14" Width="255"/>
+        <ListBox x:Name ="Actual_Receptions" HorizontalAlignment="Left" Height="264" Margin="414,75,0,0" VerticalAlignment="Top" Width="255" IsSynchronizedWithCurrentItem="False"/>
+        <Button x:Name="bCancel" HorizontalAlignment="Left" Margin="414,354,0,0" VerticalAlignment="Top" Width="114" Background="White" Content="Отменить запись" Visibility="Visible" Click="bCancel_Click"/>
     </Grid>
 </Window>

@@ -52,6 +52,36 @@ namespace Med
                     Mail.Text = con.value;
                 }
             }
+            Base bs = Base.getInstance();
+            DataTable dt = bs.TakeValue("*", "Line WHERE ID_Patient = " + patient.id.ToString());
+            if (dt.Rows.Count <= 0)
+            {
+                Line.Text = "Пациент не стоит в очереди";
+                bAddLine.Visibility = Visibility.Visible;
+                InfoLine.Visibility = Visibility.Hidden;
+                bLeftLine.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                InfoLine.Text = $"Дата записи: {dt.Rows[0]["Date"].ToString()}\nЖалобы:\n{dt.Rows[0]["Anamnesis"].ToString()}";
+            }
+            Reception[] receptions = this.Patient.Receptions();
+            if (receptions.Length == 0)
+            {
+                Actual_Receptions.Visibility = Visibility.Hidden;
+                Receptions.Text = "Назначенных приёмов нет";
+                bCancel.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                string info = "";
+                foreach (Reception rec in receptions)
+                {
+                    info = $"{rec.startDate.ToString()}\nДоктор: {rec.fnmDoctor}\nЖалобы: {rec.anamnesis}";
+                    Actual_Receptions.Items.Add(info);
+                }
+            }
+
         }
 
         private void Change(object sender, RoutedEventArgs e)
@@ -173,5 +203,31 @@ namespace Med
             boxMail.Visibility = Visibility.Hidden;
         }
 
+        private void Left_Line(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Покинуть очередь?", "Подтвердите действие", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                this.Patient.LeftLine();
+                this.UpdateLayout();
+                Line.Text = "Пациент не стоит в очереди";
+                bAddLine.Visibility = Visibility.Visible;
+                InfoLine.Visibility = Visibility.Hidden;
+                bLeftLine.Visibility = Visibility.Hidden;
+            }
+
+        }
+
+        private void Add_Line(object sender, RoutedEventArgs e)
+        {
+            Add_Line_Patient addLine = new Add_Line_Patient(this.Patient, 2, this.User, this.Cabinet);
+            addLine.Show();
+            this.Hide();
+        }
+
+        private void bCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Patient.CancelReception(int.Parse(Actual_Receptions.SelectedItem.ToString()));
+        }
     }
 }

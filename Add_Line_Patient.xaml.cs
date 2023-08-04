@@ -27,11 +27,17 @@ namespace Med
     public partial class Add_Line_Patient : Window
     {
         Patient User;
+        int Type;
+        Nurse Nurse;
+        Nurse_Cabinet Cabinet;
 
-        public Add_Line_Patient(Patient user)
+        public Add_Line_Patient(Patient user, int type, Nurse nurse = null, Nurse_Cabinet cabinet = null)
         {
             InitializeComponent();
             this.User = user;
+            this.Type = type;
+            this.Nurse = nurse;
+            this.Cabinet = cabinet;
         }
 
         private void CancelLine(object sender, RoutedEventArgs e)
@@ -50,8 +56,16 @@ namespace Med
                 try
                 {
                     this.User.AddToLine(Anamnesis.Text);
-                    LK_Patint lkPatient = new LK_Patint(this.User);
-                    lkPatient.Show();
+                    if (this.Type == 0)
+                    {
+                        LK_Patint lkPatient = new LK_Patint(this.User);
+                        lkPatient.Show();
+                    }
+                    if (this.Type == 2)
+                    {
+                        Page_Patient pagePatient = new Page_Patient(this.Nurse, this.Cabinet, this.User);
+                        pagePatient.Show();
+                    }
                     this.Hide();
                 }
                 catch (Exception error)
@@ -61,7 +75,7 @@ namespace Med
             }
             else
             {
-                MessageBox.Show("Опишите ваши жалобы");
+                MessageBox.Show("Опишите жалобы");
             }
         }
     }

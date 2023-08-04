@@ -37,19 +37,22 @@ namespace Med
             FNM.Text = $"{user.family.Substring(0,1).ToUpper() + user.family.Substring(1, user.family.Length - 1)} {user.name.Substring(0, 1).ToUpper() + user.name.Substring(1, user.name.Length - 1)} {user.middleName.Substring(0, 1).ToUpper() + user.middleName.Substring(1, user.middleName.Length - 1)}";
             foreach (Contact con in user.contacts)
             {
+                string value = "";
                 if (con.type == 1)
                 {
-                    Tel.Text += con.value;
+                    value = "Телефон: " + con.value;
+                    Tel.Text = value;
                 }
                 else if (con.type == 2)
                 {
-                    Mail.Text += con.value;
+                    value = "E-mail: " + con.value;
+                    Mail.Text = value;
                 }
             }
             Reception[] receptions = user.Receptions();
             if (receptions.Length == 0)
             {
-                Actual_Receptions.Visibility = Visibility.Collapsed;
+                Actual_Receptions.Visibility = Visibility.Hidden;
                 Receptions.Text = "Назначенных приёмов нет";
                 bCancel.Visibility = Visibility.Hidden;
             }
@@ -83,7 +86,7 @@ namespace Med
         }
         private void Add_Line(object sender, RoutedEventArgs e)
         {
-            Add_Line_Patient addLine = new Add_Line_Patient(this.User);
+            Add_Line_Patient addLine = new Add_Line_Patient(this.User, 0);
             addLine.Show();
             this.Hide();
         }

@@ -41,7 +41,7 @@ namespace Med {
     public partial class MainWindow : System.Windows.Window, System.Windows.Markup.IComponentConnector {
         
         
-        #line 25 "..\..\MainWindow.xaml"
+        #line 26 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox Name;
         
@@ -49,7 +49,7 @@ namespace Med {
         #line hidden
         
         
-        #line 27 "..\..\MainWindow.xaml"
+        #line 28 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox Family;
         
@@ -57,7 +57,7 @@ namespace Med {
         #line hidden
         
         
-        #line 29 "..\..\MainWindow.xaml"
+        #line 30 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox MiddleName;
         
@@ -65,7 +65,7 @@ namespace Med {
         #line hidden
         
         
-        #line 32 "..\..\MainWindow.xaml"
+        #line 33 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBox User;
         
@@ -113,7 +113,7 @@ namespace Med {
             return;
             case 4:
             
-            #line 31 "..\..\MainWindow.xaml"
+            #line 32 "..\..\MainWindow.xaml"
             ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.Enter);
             
             #line default
