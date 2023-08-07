@@ -44,3 +44,5 @@ C:\Users\user\source\repos\Med\obj\Debug\Page_Doctor.baml
 C:\Users\user\source\repos\Med\obj\Debug\Page_Patient.baml
 C:\Users\user\source\repos\Med\obj\Debug\Search_Human.g.cs
 C:\Users\user\source\repos\Med\obj\Debug\Search_Human.baml
+C:\Users\user\source\repos\Med\obj\Debug\Add_Human.g.cs
+C:\Users\user\source\repos\Med\obj\Debug\Add_Human.baml

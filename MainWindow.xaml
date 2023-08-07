@@ -9,10 +9,11 @@
         Title="Медицинская организация" Height="450" Width="800" HorizontalAlignment="Center" VerticalAlignment="Center">
     <Grid Background="#FF4FC7FF" RenderTransformOrigin="0.506,0.484" Margin="0,-17,0,-45">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="679*"/>
             <ColumnDefinition Width="113*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Margin="293,46,0,0" TextWrapping="Wrap" Text="Авторизация" FontSize="36" Height="72" RenderTransformOrigin="0.5,0.5" TextAlignment="Center" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+        <TextBlock Margin="293,46,0,0" TextWrapping="Wrap" Text="Авторизация" FontSize="36" Height="72" RenderTransformOrigin="0.5,0.5" TextAlignment="Center" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Hidden" Grid.ColumnSpan="2">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -22,14 +23,14 @@
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <TextBox Height="38" Margin="155,132,0,0" TextWrapping="Wrap" Text="Анна" x:Name="Name" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="477" ToolTip="ВВедите имя" />
-        <TextBlock Margin="155,111,0,0" TextWrapping="Wrap" Text="Имя" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox Height="38" Margin="155,196,0,0" TextWrapping="Wrap" Text="Аннович" Width="477" x:Name="Family" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" />
-        <TextBlock Margin="155,175,0,0" TextWrapping="Wrap" Text="Фамилия" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox Height="38" Margin="155,260,0,0" TextWrapping="Wrap" Text="Анновна" Width="477" x:Name="MiddleName" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" />
-        <TextBlock Margin="155,239,0,0" TextWrapping="Wrap" Text="Отчество" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Button Content="Войти" Margin="310,388,0,0" Width="150" Height="51" Background="White" FontSize="20" Click="Enter" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <ComboBox x:Name="User" Margin="155,329,0,0" Width="477" Height="38" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <TextBox Height="38" Margin="155,132,0,0" TextWrapping="Wrap" Text="Анна" x:Name="Name" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="477" ToolTip="ВВедите имя" Grid.ColumnSpan="2" />
+        <TextBlock Margin="155,111,0,0" TextWrapping="Wrap" Text="Имя" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <TextBox Height="38" Margin="155,196,0,0" TextWrapping="Wrap" Text="Аннович" Width="477" x:Name="Family" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+        <TextBlock Margin="155,175,0,0" TextWrapping="Wrap" Text="Фамилия" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <TextBox Height="38" Margin="155,260,0,0" TextWrapping="Wrap" Text="Анновна" Width="477" x:Name="MiddleName" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+        <TextBlock Margin="155,239,0,0" TextWrapping="Wrap" Text="Отчество" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Button Content="Войти" Margin="310,388,0,0" Width="150" Height="51" Background="White" FontSize="20" Click="Enter" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="User" Margin="155,329,0,0" Width="477" Height="38" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <ComboBox.Background>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                     <GradientStop Color="#FFF0F0F0" Offset="0"/>
@@ -40,6 +41,6 @@
             <System:String>Доктор</System:String>
             <System:String>Медсестра</System:String>
         </ComboBox>
-        <TextBlock Margin="155,308,0,0" TextWrapping="Wrap" Text="Выберете из списка" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock Margin="155,308,0,0" TextWrapping="Wrap" Text="Выберете из списка" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

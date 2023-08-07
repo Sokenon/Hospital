@@ -24,32 +24,31 @@
                 <RowDefinition Height="9*"/>
             </Grid.RowDefinitions>
             <TextBlock HorizontalAlignment="Left" Margin="10,9,0,0" TextWrapping="Wrap" Text="Фамилия" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Width="133"/>
-            <TextBlock HorizontalAlignment="Left" Margin="10,9,0,0" TextWrapping="Wrap" Text="Имя
-                       " VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Grid.Row="2" Width="133"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,9,0,0" TextWrapping="Wrap" Text="Имя" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Grid.Row="2" Width="133"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,9,0,0" TextWrapping="Wrap" Text="Отчество" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Grid.Row="4" Width="133"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,9,0,0" TextWrapping="Wrap" Text="Возраст" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Grid.Row="6" Width="133"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,9,0,0" TextWrapping="Wrap" Text="Телефон" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Grid.Column="2" Width="133"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,9,0,0" TextWrapping="Wrap" Text="E-mail" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Grid.Column="2" Grid.Row="2" Width="133"/>
-            <TextBlock HorizontalAlignment="Left" Margin="10,9,0,0" TextWrapping="Wrap" Text="Должность" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Grid.Column="2" Grid.Row="4" Width="133"/>
-            <TextBlock HorizontalAlignment="Left" Margin="10,9,0,0" TextWrapping="Wrap" Text="Квалификация" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Grid.Column="2" Grid.Row="6" Width="133"/>
+            <TextBlock x:Name="stringPosition" HorizontalAlignment="Left" Margin="10,9,0,0" TextWrapping="Wrap" Text="Должность" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Grid.Column="2" Grid.Row="4" Width="133"/>
+            <TextBlock x:Name="stringQualification" HorizontalAlignment="Left" Margin="10,9,0,0" TextWrapping="Wrap" Text="Квалификация" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Grid.Column="2" Grid.Row="6" Width="133"/>
             <TextBox x:Name="Family" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="280" FontSize="14"/>
             <TextBox x:Name="Name" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="3" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="280" FontSize="14"/>
             <TextBox x:Name="MiddleName" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="280" FontSize="14"/>
-            <TextBox x:Name="Age" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="7" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="133" FontSize="14" TextChanged="TextBox_TextChanged"/>
+            <TextBox x:Name="Age" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="7" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="133" FontSize="14"/>
             <TextBox x:Name="Telephone" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="280" FontSize="14" Grid.Column="2"/>
             <TextBox x:Name="Mail" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="3" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="280" FontSize="14" Grid.Column="2"/>
             <TextBox x:Name="Position" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="280" FontSize="14" Grid.Column="2"/>
             <TextBox x:Name="Qualification" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="7" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="280" FontSize="14" Grid.Column="2"/>
             <TextBlock HorizontalAlignment="Left" Margin="167,10,0,0" TextWrapping="Wrap" Text="Пол" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Grid.Row="6" Width="28" Grid.RowSpan="2" RenderTransformOrigin="-0.182,0.699"/>
             <TextBox x:Name="Work_Phone" HorizontalAlignment="Left" Height="23" Margin="10,-34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="280" FontSize="14" Grid.Column="2"/>
-            <TextBlock HorizontalAlignment="Left" Margin="10,-55,0,0" TextWrapping="Wrap" Text="Добавочный номер" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Grid.Column="2" Width="133"/>
+            <TextBlock x:Name="stringWorkPhone" HorizontalAlignment="Left" Margin="10,-55,0,0" TextWrapping="Wrap" Text="Добавочный номер" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Grid.Column="2" Width="133"/>
         </Grid>
-        <CheckBox x:Name="Man" Content="М" HorizontalAlignment="Left" Margin="240,319,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Foreground="White" FontWeight="Bold" FontSize="14"/>
-        <CheckBox x:Name="Woman" Content="Ж" HorizontalAlignment="Left" Margin="308,319,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Foreground="White" FontWeight="Bold" FontSize="14"/>
-        <Button x:Name="bPatient" Content="Пациент" HorizontalAlignment="Left" Margin="52,29,0,0" VerticalAlignment="Top" Width="110" Height="28" Background="White" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold"/>
-        <Button x:Name="bDoctor" Content="Доктор" HorizontalAlignment="Left" Margin="167,29,0,0" VerticalAlignment="Top" Width="110" Height="28" Background="White" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold"/>
-        <Button x:Name="bStaff" Content="Мед. персонал" HorizontalAlignment="Left" Margin="282,29,0,0" VerticalAlignment="Top" Width="110" Height="28" Background="White" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold"/>
-        <Button x:Name="bCancel" Content="Отмена" HorizontalAlignment="Left" Margin="174,354,0,0" VerticalAlignment="Top" Width="150" Height="32" Background="White" FontSize="16"/>
-        <Button x:Name="bAdd_Human" Content="Зарегистрировать" HorizontalAlignment="Left" Margin="504,354,0,0" VerticalAlignment="Top" Width="150" Height="32" Background="White" FontSize="16"/>
+        <CheckBox x:Name="Man" Content="М" HorizontalAlignment="Left" Margin="240,319,0,0" VerticalAlignment="Top" Checked="CheckBox_Man" Foreground="White" FontWeight="Bold" FontSize="14"/>
+        <CheckBox x:Name="Woman" Content="Ж" HorizontalAlignment="Left" Margin="308,319,0,0" VerticalAlignment="Top" Checked="CheckBox_Woman" Foreground="White" FontWeight="Bold" FontSize="14"/>
+        <Button x:Name="bPatient" Content="Пациент" HorizontalAlignment="Left" Margin="52,29,0,0" VerticalAlignment="Top" Width="110" Height="28" Background="White" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold" Click="bPatient_Click"/>
+        <Button x:Name="bDoctor" Content="Доктор" HorizontalAlignment="Left" Margin="167,29,0,0" VerticalAlignment="Top" Width="110" Height="28" Background="#FF0082A8" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold" Foreground="White" Click="bDoctor_Click"/>
+        <Button x:Name="bStaff" Content="Мед. персонал" HorizontalAlignment="Left" Margin="282,29,0,0" VerticalAlignment="Top" Width="110" Height="28" Background="#FF0082A8" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold" Foreground="White" Click="bStaff_Click"/>
+        <Button x:Name="bCancel" Click="Cancel" Content="Отмена" HorizontalAlignment="Left" Margin="174,354,0,0" VerticalAlignment="Top" Width="150" Height="32" Background="White" FontSize="16"/>
+        <Button x:Name="bAdd_Human" Click="Add" Content="Зарегистрировать" HorizontalAlignment="Left" Margin="504,354,0,0" VerticalAlignment="Top" Width="150" Height="32" Background="White" FontSize="16"/>
     </Grid>
 </Window>

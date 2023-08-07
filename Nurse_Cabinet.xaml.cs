@@ -56,7 +56,9 @@ namespace Med
 
         private void Add_New_User(object sender, RoutedEventArgs e)
         {
-
+            Add_Human addHuman = new Add_Human(this, this.User);
+            addHuman.Show();
+            this.Hide();
         }
     }
 }
