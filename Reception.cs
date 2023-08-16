@@ -190,7 +190,7 @@ namespace Hospital
             {
                 doctors = doctors + ", " + row["ID"].ToString();
             }
-            DataTable humans = bs.TakeValue("ID, (Family + \", \" + Name + \", \" + MiddleName) AS FNM", $"Human WHERE ID = {doctors}");
+            DataTable humans = bs.TakeValue("ID, concat(Family , \" \", substring(Name, 1,1), \". \", substring(MiddleName, 1, 1), \".\") AS FNM", $"Human WHERE ID = {doctors}");
             Reception helper = null;
             foreach (DataRow row in dt.Rows)
             {

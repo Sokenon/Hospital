@@ -13,7 +13,7 @@ using Hospital;
 
 namespace Hospital
 {
-    public class Line
+    public class LineHospital
     {
         private int ID;
         private int ID_Patient;
@@ -24,24 +24,31 @@ namespace Hospital
         private string Anamnesis;
         public string anamnesis { get { return Anamnesis; } }
 
-        public Line(int id, int idPatient, DateTime date, string anamnesis)
+        public LineHospital(int id, int idPatient, DateTime date, string anamnesis, string fnm = "none")
         {
             this.ID = id;
             this.ID_Patient = idPatient;
             this.Date = date;
             this.Anamnesis = anamnesis;
-            Base bs = Base.getInstance();
-            DataTable dt = bs.TakeValue("(Family + \", \" + Name + \", \" + MiddleName) AS FNM", $"Human WHERE ID = {idPatient.ToString()}");
-            this.FNM = dt.Rows[0]["FNM"].ToString();
+            if (fnm == "none")
+            {
+                Base bs = Base.getInstance();
+                DataTable dt = bs.TakeValue("concat(Family , \" \", substring(Name, 1,1), \". \", substring(MiddleName, 1, 1), \".\") AS FNM", $"Human WHERE ID = {idPatient.ToString()}");
+                this.FNM = dt.Rows[0]["FNM"].ToString();
+            }
+            else
+            {
+                this.FNM = fnm;
+            }
         }
-        static public Line TakeLast()
+        static public LineHospital TakeLast()
         {
             Base bs = Base.getInstance();
             DataTable dt = bs.TakeValue("*", "Line ORDER BY Date ASC LIMIT 1");
-            Line line = new Line(int.Parse(dt.Rows[0]["ID"].ToString()), int.Parse(dt.Rows[0]["ID_Patient"].ToString()), DateTime.Parse(dt.Rows[0]["Date"].ToString()), dt.Rows[0]["Anamnesis"].ToString());
+            LineHospital line = new LineHospital(int.Parse(dt.Rows[0]["ID"].ToString()), int.Parse(dt.Rows[0]["ID_Patient"].ToString()), DateTime.Parse(dt.Rows[0]["Date"].ToString()), dt.Rows[0]["Anamnesis"].ToString());
             return line;
         }
-        static int LineLenght()
+        static public int LineLenght()
         {
             Base bs = Base.getInstance();
             DataTable dt = bs.TakeValue("COUNT(*)", "Line");

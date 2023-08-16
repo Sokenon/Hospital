@@ -7,10 +7,11 @@
         mc:Ignorable="d"
         Title="Nurse_Cabinet" Height="450" Width="800">
     <Grid Background="#FF4FC7FF">
-        <Button x:Name="bDoctor" Content="Выбрать доктора" Click="Choose_Doctor" HorizontalAlignment="Left" Margin="241,91,0,0" VerticalAlignment="Top" Width="290" Height="48" Background="White" FontSize="16"/>
-        <Button x:Name="bPatient" Content="Выбрать пациента" Click="Choose_Patient" HorizontalAlignment="Left" Margin="241,165,0,0" VerticalAlignment="Top" Width="290" Height="48" Background="White" FontSize="16"/>
-        <Button x:Name="bAddUser" Content="Добавить пользователя" Click="Add_New_User" HorizontalAlignment="Left" Margin="241,238,0,0" VerticalAlignment="Top" Width="290" Height="48" Background="White" FontSize="16"/>
+        <Button x:Name="bDoctor" Content="Выбрать доктора" Click="Choose_Doctor" HorizontalAlignment="Left" Margin="241,62,0,0" VerticalAlignment="Top" Width="290" Height="48" Background="White" FontSize="16"/>
+        <Button x:Name="bPatient" Content="Выбрать пациента" Click="Choose_Patient" HorizontalAlignment="Left" Margin="241,136,0,0" VerticalAlignment="Top" Width="290" Height="48" Background="White" FontSize="16"/>
+        <Button x:Name="bAddUser" Content="Добавить пользователя" Click="Add_New_User" HorizontalAlignment="Left" Margin="241,209,0,0" VerticalAlignment="Top" Width="290" Height="48" Background="White" FontSize="16"/>
         <Button x:Name="bLK"  Content="Личный кабинет" Click="LK" HorizontalAlignment="Left" Margin="644,10,0,0" VerticalAlignment="Top" Width="131" Height="26" Background="White"/>
+        <Button x:Name="bNewReceptions" Click="New_Receptions" Content="Сформировать приёмы" HorizontalAlignment="Left" Margin="241,283,0,0" VerticalAlignment="Top" Width="290" Height="48" Background="White" FontSize="16"/>
 
     </Grid>
 </Window>

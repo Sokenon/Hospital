@@ -89,7 +89,13 @@
     <Compile Include="Add_Line_Patient.xaml.cs">
       <DependentUpon>Add_Line_Patient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Line.cs" />
+    <Compile Include="Add_Receptions.xaml.cs">
+      <DependentUpon>Add_Receptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Create_Reception.xaml.cs">
+      <DependentUpon>Create_Reception.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LineHospital.cs" />
     <Compile Include="LK_Nurse.xaml.cs">
       <DependentUpon>LK_Nurse.xaml</DependentUpon>
     </Compile>
@@ -117,6 +123,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Add_Line_Patient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Add_Receptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Create_Reception.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

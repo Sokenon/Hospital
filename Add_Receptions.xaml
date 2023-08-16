@@ -1,0 +1,15 @@
+﻿<Window x:Class="Med.Add_Receptions"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Med"
+        mc:Ignorable="d"
+        Title="Add_Receptions" Height="450" Width="800">
+    <Grid Background="#FF4FC7FF">
+        <ListBox x:Name ="AllLine" HorizontalAlignment="Left" Height="264" Margin="210,67,0,0" VerticalAlignment="Top" Width="361" IsSynchronizedWithCurrentItem="False"/>
+        <Button x:Name="bReception" Content="Назначить приём" HorizontalAlignment="Left" Margin="210,359,0,0" VerticalAlignment="Top" Width="139" Background="White" Click="Create"/>
+        <Button x:Name="bCancel" Content="Вернуться в кабинет" HorizontalAlignment="Left" Margin="432,359,0,0" VerticalAlignment="Top" Width="139" Background="White" Click="Cancel"/>
+        <TextBlock HorizontalAlignment="Left" Margin="210,25,0,0" TextWrapping="Wrap" Text="Очередь" VerticalAlignment="Top" Height="42" Width="344" Foreground="White" FontSize="24" TextAlignment="Center"/>
+    </Grid>
+</Window>

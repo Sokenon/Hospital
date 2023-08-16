@@ -17,11 +17,11 @@
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <TextBox Height="38" Margin="155,132,0,0" TextWrapping="Wrap" Text="Сергей" x:Name="Name" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="477" ToolTip="ВВедите имя" />
+        <TextBox Height="38" Margin="155,132,0,0" TextWrapping="Wrap" Text="Иван" x:Name="Name" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="477" ToolTip="ВВедите имя" />
         <TextBlock Margin="155,111,0,0" TextWrapping="Wrap" Text="Имя" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox Height="38" Margin="155,196,0,0" TextWrapping="Wrap" Text="Сергеев" Width="477" x:Name="Family" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBox Height="38" Margin="155,196,0,0" TextWrapping="Wrap" Text="Иванов" Width="477" x:Name="Family" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" />
         <TextBlock Margin="155,175,0,0" TextWrapping="Wrap" Text="Фамилия" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox Height="38" Margin="155,260,0,0" TextWrapping="Wrap" Text="Сергеевич" Width="477" x:Name="MiddleName" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBox Height="38" Margin="155,260,0,0" TextWrapping="Wrap" Text="Иванович" Width="477" x:Name="MiddleName" FontSize="16" Cursor="Pen" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" />
         <TextBlock Margin="155,239,0,0" TextWrapping="Wrap" Text="Отчество" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Button x:Name="bFind" Click="Find" Content="Найти" HorizontalAlignment="Left" Margin="470,318,0,0" VerticalAlignment="Top" Width="162" Height="39" Background="White" FontSize="16"/>
         <Button x:Name="bCancel" Click="Cancel" Content="Отмена" HorizontalAlignment="Left" Margin="155,318,0,0" VerticalAlignment="Top" Width="162" Height="39" Background="White" FontSize="16"/>

@@ -81,7 +81,16 @@ namespace Med
             parametrs.Add("@Name", Name.Text.Trim().ToLower());
             parametrs.Add("@Family", Family.Text.Trim().ToLower());
             parametrs.Add("@MiddleName", MiddleName.Text.Trim().ToLower());
-            DataTable dt = bs.TakeValue("ID, Type", $"Human WHERE Name = @Name AND Family = @Family AND MiddleName = @MiddleName AND Type = {this.TypeOfHuman};", parametrs);
+            string command = "";
+            if (this.TypeOfHuman == 0)
+            {
+                command = "Human WHERE Name = @Name AND Family = @Family AND MiddleName = @MiddleName;";
+            }
+            else
+            {
+                command = $"Human WHERE Name = @Name AND Family = @Family AND MiddleName = @MiddleName AND Type = {this.TypeOfHuman};";
+            }
+            DataTable dt = bs.TakeValue("ID, Type", command, parametrs);
 
             if (dt.Rows.Count > 0)
             {

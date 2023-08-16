@@ -64,7 +64,7 @@ namespace Hospital
                 return dt;
             }
         }
-        public int AddRow(string table, string value)
+        public int AddRow(string table, string value, Dictionary<string, string> parametrs = null)
         {
             string columns = "";
             switch (table)
@@ -85,6 +85,14 @@ namespace Hospital
 
             string CommandText = $"INSERT INTO {table} ({columns}) VALUES ({value}) RETURNING ID;";
             MySqlCommand myCommand = new MySqlCommand(CommandText, this.connection);
+            if (parametrs != null)
+            {
+                foreach (var item in parametrs)
+                {
+                    myCommand.Parameters.AddWithValue(item.Key, item.Value);
+                }
+            }
+            
             DataSet ds = new DataSet();
             this.connection.Open();
             int id = (Int32) myCommand.ExecuteScalar();

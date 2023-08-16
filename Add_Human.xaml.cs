@@ -308,6 +308,7 @@ namespace Med
             if (this.type == 0 & checkCorrect == 6)
             {
                 Patient human = new Patient(Name.Text.Trim().ToLower(), Family.Text.Trim().ToLower(), MiddleName.Text.Trim().ToLower(), int.Parse(Age.Text.Trim().ToLower()), this.sex);
+                human.Save();
                 human.AddContact(newTelephone, 1);
                 human.AddContact(newMail, 2);
                 Page_Patient pagePatient = new Page_Patient(this.User, this.Cabinet, human);
@@ -317,7 +318,8 @@ namespace Med
             }
             else if (this.type == 1 & checkCorrect == 9)
             {
-                Doctor human = new Doctor(Name.Text.Trim().ToLower(), Family.Text.Trim().ToLower(), MiddleName.Text.Trim().ToLower(), int.Parse(Age.Text.Trim().ToLower()), this.sex, Position.Text.Trim().ToLower(), Qualification.Text.Trim().ToLower());
+                Doctor human = new Doctor(Name.Text.Trim().ToLower(), Family.Text.Trim().ToLower(), MiddleName.Text.Trim().ToLower(), int.Parse(Age.Text.Trim().ToLower()), this.sex, Position.Text.Trim().ToLower(), Qualification.Text.Trim().ToLower(), this.type);
+                human.Save();
                 human.AddContact(newTelephone, 1);
                 human.AddContact(newMail, 2);
                 human.AddContact(newWorkPhone, 3);
@@ -329,6 +331,7 @@ namespace Med
             else if (this.type == 2 & checkCorrect == 8)
             {
                 Nurse human = new Nurse(Name.Text.Trim().ToLower(), Family.Text.Trim().ToLower(), MiddleName.Text.Trim().ToLower(), int.Parse(Age.Text.Trim().ToLower()), this.sex, Position.Text.Trim().ToLower(), this.type);
+                human.Save();
                 human.AddContact(newTelephone, 1);
                 human.AddContact(newMail, 2);
                 human.AddContact(newWorkPhone, 3);

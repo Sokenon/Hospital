@@ -35,7 +35,6 @@ namespace Hospital
             this.MiddleName = middleName;
             this.Age = age;
             this.Sex = sex;
-            Save();
         }
         public Human(int id)
         {
@@ -60,10 +59,16 @@ namespace Hospital
         {
             Contacts[id].DeleteContact();
         }
-        virtual protected void Save()
+        virtual public void Save()
         {
             Base bs = Base.getInstance();
-            this.ID = bs.AddRow("Human", $"{this.Family}, {this.Name}, {this.MiddleName}, {this.Sex.ToString()}, {this.Age.ToString()}, NULL, NULL, NULL");
+            Dictionary<string, string> parametrs = new Dictionary<string, string>();
+            parametrs.Add("@Name", this.Name);
+            parametrs.Add("@Family", this.Family);
+            parametrs.Add("@MiddleName", this.MiddleName);
+            parametrs.Add("@Sex", this.Sex.ToString());
+            parametrs.Add("@Age", this.Age.ToString());
+            this.ID = bs.AddRow("Human", "@Family, @Name, @MiddleName, @Sex, @Age, NULL, NULL, NULL", parametrs);
         }
         public int[] ShowAllTypes()
         {
@@ -132,11 +137,11 @@ namespace Hospital
         }
         public void AddToLine(string anamnesis)
         {
-            Line.AddLine(this.ID, anamnesis);
+            LineHospital.AddLine(this.ID, anamnesis);
         }
         public void LeftLine()
         {
-            Line.DeleteLine(this.ID);
+            LineHospital.DeleteLine(this.ID);
         }
         public Reception[] AllReceptions()
         {
@@ -182,10 +187,18 @@ namespace Hospital
                     return false;
             }
         }
-        protected override void Save()
+        public override void Save()
         {
             Base bs = Base.getInstance();
-            this.ID = bs.AddRow("Human", $"{this.Family}, {this.Name}, {this.MiddleName}, {this.Sex.ToString()}, {this.Age.ToString()}, {this.Position}, NULL, {this.Type.ToString()}");
+            Dictionary<string, string> parametrs = new Dictionary<string, string>();
+            parametrs.Add("@Name", this.Name);
+            parametrs.Add("@Family", this.Family);
+            parametrs.Add("@MiddleName", this.MiddleName);
+            parametrs.Add("@Sex", this.Sex.ToString());
+            parametrs.Add("@Age", this.Age.ToString());
+            parametrs.Add("@Position", this.Position);
+            parametrs.Add("@Type", this.Type.ToString());
+            this.ID = bs.AddRow("Human", "@Family, @Name, @MiddleName, @Sex, @Age, @Position, NULL, @Type", parametrs);
         }
         protected override void TakeHuman(int id)
         {
@@ -235,7 +248,7 @@ namespace Hospital
         }
         public void CreateReception(int idDoctor, DateTime date)
         {
-            Line.TakeLast().CreateReception(idDoctor, date);
+            LineHospital.TakeLast().CreateReception(idDoctor, date);
         }
     }
     public class Doctor : Stuff
@@ -247,7 +260,7 @@ namespace Hospital
         private Reception ActualReception = null;
         public Reception actualReception { get { return ActualReception; } }
 
-        public Doctor(string name, string family, string middleName, int age, int sex, string position, string qualification) : base(name, family, middleName, age, sex, position, 1)
+        public Doctor(string name, string family, string middleName, int age, int sex, string position, string qualification, int type) : base(name, family, middleName, age, sex, position, 1)
         {
             this.Qualification = qualification;
         }
@@ -255,10 +268,19 @@ namespace Hospital
         {
 
         }
-        protected override void Save()
+        public override void Save()
         {
             Base bs = Base.getInstance();
-            this.ID = bs.AddRow("Human", $"{this.Family}, {this.Name}, {this.MiddleName}, {this.Sex.ToString()}, {this.Age.ToString()}, {this.Position}, {this.Qualification.ToString()}, {this.Type.ToString()}");
+            Dictionary<string, string> parametrs = new Dictionary<string, string>();
+            parametrs.Add("@Name", this.Name);
+            parametrs.Add("@Family", this.Family);
+            parametrs.Add("@MiddleName", this.MiddleName);
+            parametrs.Add("@Sex", this.Sex.ToString());
+            parametrs.Add("@Age", this.Age.ToString());
+            parametrs.Add("@Position", this.Position);
+            parametrs.Add("@Type", this.Type.ToString());
+            parametrs.Add("@Qualification", this.Qualification);
+            this.ID = bs.AddRow("Human", "@Family, @Name, @MiddleName, @Sex, @Age, @Position, @Qualification, @Type", parametrs);
         }
         protected override void TakeHuman(int id)
         {

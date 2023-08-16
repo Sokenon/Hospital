@@ -60,5 +60,12 @@ namespace Med
             addHuman.Show();
             this.Hide();
         }
+
+        private void New_Receptions(object sender, RoutedEventArgs e)
+        {
+            Add_Receptions addReceptions = new Add_Receptions(this.User, this);
+            addReceptions.Show();
+            this.Hide();
+        }
     }
 }

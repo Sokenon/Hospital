@@ -46,3 +46,7 @@ C:\Users\user\source\repos\Med\obj\Debug\Search_Human.g.cs
 C:\Users\user\source\repos\Med\obj\Debug\Search_Human.baml
 C:\Users\user\source\repos\Med\obj\Debug\Add_Human.g.cs
 C:\Users\user\source\repos\Med\obj\Debug\Add_Human.baml
+C:\Users\user\source\repos\Med\obj\Debug\Add_Receptions.g.cs
+C:\Users\user\source\repos\Med\obj\Debug\Add_Receptions.baml
+C:\Users\user\source\repos\Med\obj\Debug\Create_Reception.g.cs
+C:\Users\user\source\repos\Med\obj\Debug\Create_Reception.baml
