@@ -83,6 +83,19 @@ namespace Hospital
             }
 
         }
+        public Reception(int id, string fnmDoctor, string fnmPatient, string anamnesis, string recept, int status, DateTime startDate, DateTime finishDate, int idDoctor, int idPatient)
+        {
+            this.Anamnesis = anamnesis;
+            this.Recept = recept;
+            this.Status = status;
+            this.Start_Date = startDate;
+            this.Finish_Date = finishDate;
+            this.ID_Doctor = idDoctor;
+            this.ID_Patient = idPatient;
+            this.ID = id;
+            this.FNM_Doctor = fnmDoctor;
+            this.FNM_Patient = fnmPatient;
+        }
         private void ChangeStatus(int newStatus)
         {
             if (ValidStatus(newStatus))
@@ -106,7 +119,7 @@ namespace Hospital
         static public void Create(int idDoctor, int idPatient, string anamnesis, DateTime startDate)
         {
             Base bs = Base.getInstance();
-            bs.AddRow("Reception", $"{idDoctor.ToString()}, {idPatient.ToString()}, {startDate.ToString()}, NULL, NULL, {anamnesis}, 0");
+            bs.AddRow("Reception", $"{idDoctor.ToString()}, {idPatient.ToString()}, \"{startDate.ToString("yyyy-MM-dd hh:mm:ss")}\", NULL, NULL, \"{anamnesis}\", 0");
         }
         static public Reception[] TakeDoctorReceptions(int idDoctor, int status = -1)
         {
@@ -119,36 +132,31 @@ namespace Hospital
             }
             if (ValidStatus(status))
             {
-                dt = bs.TakeValue("*", "Reception WHERE ID_Doctor = " + idDoctor.ToString() + "AND Status = " + status.ToString());
+                dt = bs.TakeValue("*", "Reception WHERE ID_Doctor = " + idDoctor.ToString() + " AND Status = " + status.ToString());
             }
             string patients = idDoctor.ToString();
             foreach (DataRow row in dt.Rows)
             {
-                patients = patients + ", " + row["ID"].ToString();
+                patients = patients + ", " + row["ID_Patient"].ToString();
             }
-            DataTable humans = dt = bs.TakeValue("ID, (Family + \", \" + Name + \", \" + MiddleName) AS FNM", $"Human WHERE ID = {patients}");
-            Reception helper = null;
+            DataTable humans = bs.TakeValue("ID, concat(Family , \" \", substring(Name, 1,1), \". \", substring(MiddleName, 1, 1), \".\") AS FNM", $"Human WHERE ID IN ({patients})");
             foreach (DataRow row in dt.Rows)
             {
-                helper.ID = int.Parse(row["ID"].ToString());
-                helper.ID_Doctor = idDoctor;
-                helper.ID_Patient = int.Parse(row["ID_Patient"].ToString());
-                helper.Anamnesis = row["Anamnesis"].ToString();
-                helper.Recept = row["Recept"].ToString();
-                helper.Status = int.Parse(row["Status"].ToString());
-                helper.Start_Date = DateTime.Parse(row["Date"].ToString());
-                helper.Finish_Date = DateTime.Parse(row["Finish_Date"].ToString());
+                string fnmDoctor = "";
+                string fnmPatient = "";
                 foreach (DataRow r in humans.Rows)
                 {
-                    if (int.Parse(r["ID"].ToString()) == helper.ID_Doctor)
+                    if (int.Parse(r["ID"].ToString()) == idDoctor)
                     {
-                        helper.FNM_Doctor = r["FNM"].ToString();
+                        fnmDoctor = r["FNM"].ToString();
                     }
-                    else if (int.Parse(r["ID"].ToString()) == helper.ID_Patient)
+                    else if (int.Parse(r["ID"].ToString()) == int.Parse(row["ID_Patient"].ToString()))
                     {
-                        helper.FNM_Patient = r["FNM"].ToString();
+                        fnmPatient = r["FNM"].ToString();
                     }
                 }
+                DateTime date = DateTime.MinValue;
+                Reception helper = new Reception(int.Parse(row["ID"].ToString()), fnmDoctor, fnmPatient, row["Anamnesis"].ToString(), row["Recept"].ToString(), int.Parse(row["Status"].ToString()), DateTime.Parse(row["Date"].ToString()), date, int.Parse(row["ID_Doctor"].ToString()), int.Parse(row["ID_Patient"].ToString()));
                 Array.Resize(ref receptions, receptions.Length + 1);
                 receptions[receptions.Length - 1] = helper;
             }

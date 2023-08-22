@@ -17,6 +17,7 @@ namespace Hospital
     {
         private int ID;
         private int ID_Patient;
+        public int idPatient { get { return ID_Patient; } }
         private string FNM;
         public string fnm { get { return FNM; } }
         private DateTime Date;
