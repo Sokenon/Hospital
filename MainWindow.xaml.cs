@@ -107,6 +107,9 @@ namespace Med
                         if (int.Parse(dt.Rows[0][1].ToString()) == 1)
                         {
                             Doctor user = new Doctor(int.Parse(dt.Rows[0][0].ToString()));
+                            LK_Doctor lkDoctor = new LK_Doctor(user);
+                            lkDoctor.Show();
+                            this.Hide();
                         }
                         else
                         {

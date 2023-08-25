@@ -23,7 +23,9 @@ namespace Hospital
         protected string MiddleName;
         public string middleName { get { return MiddleName; } }
         protected int Age;
+        public int age { get { return Age; } }
         protected int Sex;
+        public int sex { get { return Sex; } }
         protected Contact[] Contacts = new Contact[0];
         public Contact[] contacts { get { return Contacts; } }
         protected int[] TypeOfContact = new int[2] { 1, 2 };

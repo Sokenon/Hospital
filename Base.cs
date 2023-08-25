@@ -31,10 +31,17 @@ namespace Hospital
                 instance = new Base();
             return instance;
         }
-        public void Act(string command)
+        public void Act(string command, Dictionary<string, string> parametrs = null)
         {
             string CommandText = command;
             MySqlCommand myCommand = new MySqlCommand(CommandText, this.connection);
+            if (parametrs != null)
+            {
+                foreach (var item in parametrs)
+                {
+                    myCommand.Parameters.AddWithValue(item.Key, item.Value);
+                }
+            }
             this.connection.Open();
             myCommand.ExecuteNonQuery();
             this.connection.Close();

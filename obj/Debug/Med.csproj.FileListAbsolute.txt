@@ -50,3 +50,7 @@ C:\Users\user\source\repos\Med\obj\Debug\Add_Receptions.g.cs
 C:\Users\user\source\repos\Med\obj\Debug\Add_Receptions.baml
 C:\Users\user\source\repos\Med\obj\Debug\Create_Reception.g.cs
 C:\Users\user\source\repos\Med\obj\Debug\Create_Reception.baml
+C:\Users\user\source\repos\Med\obj\Debug\LK_Doctor.g.cs
+C:\Users\user\source\repos\Med\obj\Debug\Reception_Work.g.cs
+C:\Users\user\source\repos\Med\obj\Debug\LK_Doctor.baml
+C:\Users\user\source\repos\Med\obj\Debug\Reception_Work.baml

@@ -96,6 +96,9 @@
       <DependentUpon>Create_Reception.xaml</DependentUpon>
     </Compile>
     <Compile Include="LineHospital.cs" />
+    <Compile Include="LK_Doctor.xaml.cs">
+      <DependentUpon>LK_Doctor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LK_Nurse.xaml.cs">
       <DependentUpon>LK_Nurse.xaml</DependentUpon>
     </Compile>
@@ -115,6 +118,9 @@
       <DependentUpon>Page_Patient.xaml</DependentUpon>
     </Compile>
     <Compile Include="Reception.cs" />
+    <Compile Include="Reception_Work.xaml.cs">
+      <DependentUpon>Reception_Work.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Search_Human.xaml.cs">
       <DependentUpon>Search_Human.xaml</DependentUpon>
     </Compile>
@@ -131,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Create_Reception.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LK_Doctor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Page_Patient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Reception_Work.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

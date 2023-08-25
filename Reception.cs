@@ -33,6 +33,7 @@ namespace Hospital
         public DateTime finishDate { get { return Finish_Date; } }
         private int ID_Doctor;
         private int ID_Patient;
+        public int idPatient { get { return ID_Patient; } }
 
         public Reception(int id)
         {
@@ -96,7 +97,7 @@ namespace Hospital
             this.FNM_Doctor = fnmDoctor;
             this.FNM_Patient = fnmPatient;
         }
-        private void ChangeStatus(int newStatus)
+        public void ChangeStatus(int newStatus)
         {
             if (ValidStatus(newStatus))
             {
@@ -109,10 +110,10 @@ namespace Hospital
                 //ОШИБКА, НЕТ ТАКОГО СТАТУСА
             }
         }
-        public void Finish(string recept)
+        public void Finish(string recept, Dictionary<string, string> parametrs = null)
         {
             Base bs = Base.getInstance();
-            bs.Act($"UPDATE Reception SET Status = 2, Recept = {recept}, Finish_Date = {DateTime.Now.ToString()} WHERE ID = {this.ID.ToString()}; ");
+            bs.Act("UPDATE Reception SET Status = 2, Recept = @Recept, Finish_Date = @Date WHERE ID = @ID;", parametrs);
             this.Status = 2;
             this.Recept = recept;
         }
@@ -155,7 +156,7 @@ namespace Hospital
                         fnmPatient = r["FNM"].ToString();
                     }
                 }
-                DateTime date = DateTime.MinValue;
+                DateTime.TryParse(row["Finish_Date"].ToString(), out DateTime date);
                 Reception helper = new Reception(int.Parse(row["ID"].ToString()), fnmDoctor, fnmPatient, row["Anamnesis"].ToString(), row["Recept"].ToString(), int.Parse(row["Status"].ToString()), DateTime.Parse(row["Date"].ToString()), date, int.Parse(row["ID_Doctor"].ToString()), int.Parse(row["ID_Patient"].ToString()));
                 Array.Resize(ref receptions, receptions.Length + 1);
                 receptions[receptions.Length - 1] = helper;

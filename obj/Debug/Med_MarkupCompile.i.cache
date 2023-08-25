@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\user\source\repos\Med\App.xaml
-12-1245142569
+14941800035
 
-221195940493
+24-673665779
 23812698933
-Add_Human.xaml;Add_Line_Patient.xaml;Add_Receptions.xaml;Create_Reception.xaml;LK_Nurse.xaml;LK_Patient.xaml;MainWindow.xaml;New_User.xaml;Nurse_Cabinet.xaml;Page_Doctor.xaml;Page_Patient.xaml;Search_Human.xaml;
+Add_Human.xaml;Add_Line_Patient.xaml;Add_Receptions.xaml;Create_Reception.xaml;LK_Doctor.xaml;LK_Nurse.xaml;LK_Patient.xaml;MainWindow.xaml;New_User.xaml;Nurse_Cabinet.xaml;Page_Doctor.xaml;Page_Patient.xaml;Reception_Work.xaml;Search_Human.xaml;
 
 True
 
