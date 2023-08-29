@@ -18,32 +18,48 @@ using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using Hospital;
 
-
 namespace Med
 {
     /// <summary>
-    /// Логика взаимодействия для Page_Doctor.xaml
+    /// Логика взаимодействия для LK_Staff.xaml
     /// </summary>
-    public partial class Page_Doctor : Window
+    public partial class LK_Staff : Window
     {
-        Nurse User;
-        Nurse_Cabinet Cabinet;
-        Doctor Doctor;
-        public Page_Doctor(Nurse user, Nurse_Cabinet cabinet, Doctor doctor)
+        Doctor userDoctor;
+        Nurse userNurse;
+        Stuff user;
+        int Type;
+        public LK_Staff(int type, Doctor doc = null, Nurse nurse = null)
         {
             InitializeComponent();
-            this.User = user;
-            this.Cabinet = cabinet;
-            this.Doctor = doctor;
+            this.Type = type;
+            if (type == 0)
+            {
+                this.userDoctor = doc;
+                this.user = new Doctor(doc.id);
+            }
+            else if (type == 1)
+            {
+                this.userNurse = nurse;
+                this.user = new Nurse(nurse.id);
+            }
             Family.Visibility = Visibility.Visible;
             Name.Visibility = Visibility.Visible;
             MiddleName.Visibility = Visibility.Visible;
-            Family.Text = this.Doctor.family.Substring(0, 1).ToUpper() + this.Doctor.family.Substring(1, this.Doctor.family.Length - 1);
-            Name.Text = this.Doctor.name.Substring(0, 1).ToUpper() + this.Doctor.name.Substring(1, this.Doctor.name.Length - 1);
-            MiddleName.Text = this.Doctor.middleName.Substring(0, 1).ToUpper() + this.Doctor.middleName.Substring(1, this.Doctor.middleName.Length - 1);
-            Position.Text = this.Doctor.position;
-            Qualification.Text = this.Doctor.qualification;
-            foreach (Contact con in doctor.contacts)
+            Family.Text = this.user.family.Substring(0, 1).ToUpper() + this.user.family.Substring(1, this.user.family.Length - 1);
+            Name.Text = this.user.name.Substring(0, 1).ToUpper() + this.user.name.Substring(1, this.user.name.Length - 1);
+            MiddleName.Text = this.user.middleName.Substring(0, 1).ToUpper() + this.user.middleName.Substring(1, this.user.middleName.Length - 1);
+            Position.Text = this.user.position;
+            if (type == 0)
+            {
+                Qualification.Text = this.userDoctor.qualification;
+            }
+            else
+            {
+                Qualification.Visibility = Visibility.Hidden;
+            }
+
+            foreach (Contact con in this.user.contacts)
             {
                 if (con.type == 1)
                 {
@@ -58,26 +74,7 @@ namespace Med
                     InnerTelephone.Text = con.value;
                 }
             }
-            Base bs = Base.getInstance();
-            Reception[] receptions = this.Doctor.receptions;
-            if (receptions == null)
-            {
-                Actual_Receptions.Visibility = Visibility.Hidden;
-                Receptions.Text = "Назначенных приёмов нет";
-            }
-            else
-            {
-                string info = "";
-                foreach (Reception rec in receptions)
-                {
-                    info = $"{rec.startDate.ToString()}\nДоктор: {rec.fnmDoctor}\nЖалобы: {rec.anamnesis}";
-                    Actual_Receptions.Items.Add(info);
-                }
-            }
-
-
         }
-
         private void Change(object sender, RoutedEventArgs e)
         {
             bCancel_Change.Visibility = Visibility.Visible;
@@ -119,11 +116,11 @@ namespace Med
                 {
                     bool checkUpdate = true;
                     Telephone.Text = boxTelephone.Text;
-                    foreach (Contact con in this.Doctor.contacts)
+                    foreach (Contact con in this.user.contacts)
                     {
                         if (con.type == 1)
                         {
-                            this.Doctor.UpdateContact(con.id, boxTelephone.Text);
+                            this.user.UpdateContact(con.id, boxTelephone.Text);
                             helper += 1;
                             checkUpdate = false;
                             break;
@@ -131,7 +128,7 @@ namespace Med
                     }
                     if (checkUpdate)
                     {
-                        this.Doctor.AddContact(boxTelephone.Text, 1);
+                        this.user.AddContact(boxTelephone.Text, 1);
                         helper += 1;
                     }
                 }
@@ -148,11 +145,11 @@ namespace Med
                 {
                     bool checkUpdate = true;
                     Mail.Text = boxMail.Text;
-                    foreach (Contact con in this.Doctor.contacts)
+                    foreach (Contact con in this.user.contacts)
                     {
                         if (con.type == 2)
                         {
-                            this.Doctor.UpdateContact(con.id, newMail);
+                            this.user.UpdateContact(con.id, newMail);
                             helper += 2;
                             checkUpdate = false;
                             break;
@@ -160,7 +157,7 @@ namespace Med
                     }
                     if (checkUpdate)
                     {
-                        this.Doctor.AddContact(newMail, 2);
+                        this.user.AddContact(newMail, 2);
                         helper += 2;
                     }
                 }
@@ -196,5 +193,20 @@ namespace Med
             Cancel();
         }
 
+        private void Return(object sender, RoutedEventArgs e)
+        {
+            if (this.Type == 0)
+            {
+                LK_Doctor lkDoctor = new LK_Doctor(this.userDoctor);
+                lkDoctor.Show();
+                this.Hide();
+            }
+            else if (this.Type == 1)
+            {
+                Nurse_Cabinet nurseCabinet = new Nurse_Cabinet(this.userNurse);
+                nurseCabinet.Show();
+                this.Hide();
+            }
+        }
     }
 }

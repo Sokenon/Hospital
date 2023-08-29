@@ -32,12 +32,10 @@ C:\Users\user\source\repos\Med\obj\Debug\LK_Patient.g.cs
 C:\Users\user\source\repos\Med\obj\Debug\LK_Patient.baml
 C:\Users\user\source\repos\Med\obj\Debug\Add_Line_Patient.g.cs
 C:\Users\user\source\repos\Med\obj\Debug\Add_Line_Patient.baml
-C:\Users\user\source\repos\Med\obj\Debug\LK_Nurse.g.cs
 C:\Users\user\source\repos\Med\obj\Debug\New_User.g.cs
 C:\Users\user\source\repos\Med\obj\Debug\Nurse_Cabinet.g.cs
 C:\Users\user\source\repos\Med\obj\Debug\Page_Doctor.g.cs
 C:\Users\user\source\repos\Med\obj\Debug\Page_Patient.g.cs
-C:\Users\user\source\repos\Med\obj\Debug\LK_Nurse.baml
 C:\Users\user\source\repos\Med\obj\Debug\New_User.baml
 C:\Users\user\source\repos\Med\obj\Debug\Nurse_Cabinet.baml
 C:\Users\user\source\repos\Med\obj\Debug\Page_Doctor.baml
@@ -54,3 +52,5 @@ C:\Users\user\source\repos\Med\obj\Debug\LK_Doctor.g.cs
 C:\Users\user\source\repos\Med\obj\Debug\Reception_Work.g.cs
 C:\Users\user\source\repos\Med\obj\Debug\LK_Doctor.baml
 C:\Users\user\source\repos\Med\obj\Debug\Reception_Work.baml
+C:\Users\user\source\repos\Med\obj\Debug\LK_Staff.g.cs
+C:\Users\user\source\repos\Med\obj\Debug\LK_Staff.baml

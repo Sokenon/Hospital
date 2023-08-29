@@ -49,7 +49,7 @@ namespace Med
 
         private void LK(object sender, RoutedEventArgs e)
         {
-            LK_Nurse lkNurse = new LK_Nurse(this.User, this);
+            LK_Staff lkNurse = new LK_Staff(1, null ,this.User);
             lkNurse.Show();
             this.Hide();
         }

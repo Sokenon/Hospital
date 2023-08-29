@@ -99,11 +99,11 @@
     <Compile Include="LK_Doctor.xaml.cs">
       <DependentUpon>LK_Doctor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LK_Nurse.xaml.cs">
-      <DependentUpon>LK_Nurse.xaml</DependentUpon>
-    </Compile>
     <Compile Include="LK_Patient.xaml.cs">
       <DependentUpon>LK_Patient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LK_Staff.xaml.cs">
+      <DependentUpon>LK_Staff.xaml</DependentUpon>
     </Compile>
     <Compile Include="New_User.xaml.cs">
       <DependentUpon>New_User.xaml</DependentUpon>
@@ -144,11 +144,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LK_Nurse.xaml">
+    <Page Include="LK_Patient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LK_Patient.xaml">
+    <Page Include="LK_Staff.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

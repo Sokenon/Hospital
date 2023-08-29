@@ -154,6 +154,7 @@ namespace Hospital
     public abstract class Stuff : Human
     {
         protected string Position;
+        public string position { get { return Position; } }
         protected int Type;
         public Stuff(string name, string family, string middleName, int age, int sex, string position, int type) : base(name, family, middleName, age, sex)
         {

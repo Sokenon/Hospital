@@ -57,7 +57,9 @@ namespace Med
 
         private void LK(object sender, RoutedEventArgs e)
         {
-
+            LK_Staff lkStaff = new LK_Staff(0, this.User);
+            lkStaff.Show();
+            this.Hide();
         }
     }
 }
