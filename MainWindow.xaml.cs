@@ -34,6 +34,10 @@ namespace Med
             bs.Act("CREATE TABLE IF NOT EXISTS Contact (ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT, ID_Human INT NOT NULL, Value VARCHAR(30) NOT NULL UNIQUE, Type INT NOT NULL, FOREIGN KEY (ID_Human) REFERENCES Human(ID));");
             bs.Act("CREATE TABLE IF NOT EXISTS Reception (ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT, ID_Doctor INT NOT NULL, ID_Patient INT NOT NULL, Date DATETIME NOT NULL, Finish_Date DATETIME, Recept VARCHAR(50), Anamnesis VARCHAR(50), Status INT NOT NULL, FOREIGN KEY (ID_Doctor) REFERENCES Human(ID), FOREIGN KEY (ID_Patient) REFERENCES Human(ID));");
             bs.Act("CREATE TABLE IF NOT EXISTS Line (ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT, ID_Patient INT NOT NULL, Date DATETIME NOT NULL, Anamnesis VARCHAR (50), FOREIGN KEY (ID_Patient) REFERENCES Human(ID));");
+            if (bs.TakeValue("ID", "Human WHERE ID = 1") == null)
+            {
+                bs.AddRow("Human", "\"Сергеев\", \"Сергей\", \"Сергеевич\", 1, 33, \"Медбрат\", NULL, 2");
+            }
         }
 
         private void Enter(object sender, RoutedEventArgs e)
